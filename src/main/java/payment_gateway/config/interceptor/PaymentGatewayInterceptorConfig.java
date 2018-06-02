@@ -1,4 +1,4 @@
-package payment_gateway.config;
+package payment_gateway.config.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
