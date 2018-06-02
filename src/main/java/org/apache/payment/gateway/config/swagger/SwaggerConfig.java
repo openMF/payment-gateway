@@ -1,4 +1,4 @@
-package payment_gateway.config.swagger;
+package org.apache.payment.gateway.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package payment_gateway.constants;
+package org.apache.payment.gateway.constants;
 
 /**
  * @author Rahul Goel created on 2/6/18

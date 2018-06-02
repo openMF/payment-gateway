@@ -1,8 +1,8 @@
-package payment_gateway.service;
+package org.apache.payment.gateway.service;
 
+import org.apache.payment.gateway.config.aspect.Loggable;
+import org.apache.payment.gateway.utils.Utility;
 import org.springframework.stereotype.Service;
-import payment_gateway.config.aspect.Loggable;
-import payment_gateway.utils.Utility;
 
 /**
  * @author Rahul Goel created on 2/6/18

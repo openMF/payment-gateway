@@ -1,4 +1,4 @@
-package payment_gateway;
+package org.apache.payment.gateway;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

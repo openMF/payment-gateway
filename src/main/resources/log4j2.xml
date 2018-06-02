@@ -14,7 +14,7 @@
 
     <Loggers>
         <!-- Log everything in custom package -->
-        <Logger name="payment_gateway" level="debug" additivity="false">
+        <Logger name="org.apache.payment.gateway" level="debug" additivity="false">
             <AppenderRef ref="Console" />
             <AppenderRef ref="File" />
         </Logger>

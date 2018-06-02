@@ -1,4 +1,4 @@
-package payment_gateway.utils;
+package org.apache.payment.gateway.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;

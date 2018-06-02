@@ -1,10 +1,10 @@
-package payment_gateway.config.interceptor;
+package org.apache.payment.gateway.config.interceptor;
 
+import org.apache.payment.gateway.constants.InterceptorConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import payment_gateway.constants.InterceptorConstants;
 
 /**
  * @author Rahul Goel created on 2/6/18

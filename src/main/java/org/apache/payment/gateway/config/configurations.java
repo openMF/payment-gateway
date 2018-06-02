@@ -1,4 +1,4 @@
-package payment_gateway.config;
+package org.apache.payment.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

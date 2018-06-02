@@ -1,4 +1,4 @@
-package payment_gateway.config.aspect;
+package org.apache.payment.gateway.config.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

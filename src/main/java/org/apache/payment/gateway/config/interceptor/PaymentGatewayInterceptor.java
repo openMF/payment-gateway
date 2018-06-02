@@ -1,4 +1,4 @@
-package payment_gateway.config.interceptor;
+package org.apache.payment.gateway.config.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
