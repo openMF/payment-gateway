@@ -54,6 +54,36 @@
             <version>2.6.0</version>
         </dependency>
 
+        <!--DTOs helper-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Database-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.2.5.Final</version>
+        </dependency>
+
+        <!-- ActiveMQ Artifacts -->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.activemq</groupId>-->
+            <!--<artifactId>activemq-client</artifactId>-->
+            <!--<version>5.14.1</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <properties>
