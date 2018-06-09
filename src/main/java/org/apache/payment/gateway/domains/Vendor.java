@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vendor {
+public class Vendor extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,22 +25,23 @@ public class Vendor {
     @Column(length = 63)
     private String vendorName;
 
-    private long createdAt;
+    private boolean isActive;
 
-    private long updatedAt;
+    private String vendorApiKey;
 
-    public Vendor(String vendorName){
-        this.vendorName = vendorName;
-    }
+    private String vendorMeta;
 
-    @PrePersist
-    public void onCreate() {
-        this.createdAt = System.currentTimeMillis();
-        this.updatedAt = System.currentTimeMillis();
-    }
+    private String callBackEndpoint;
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = System.currentTimeMillis();
-    }
+    private String vendorAuthenticationKey;
+
+    private String queueAuthenticationKey;
+
+    private String currency;
+
+//
+//    public Vendor(String vendorName){
+//        this.vendorName = vendorName;
+//    }
+
 }
