@@ -22,26 +22,36 @@ public class Vendor extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 63)
+    @Column(name = "vendor_name", length = 63)
     private String vendorName;
 
+    @Column(name = "is_active")
     private boolean isActive;
 
+    @Column(name = "vendor_api_key")
     private String vendorApiKey;
 
+    @Column(name = "vendor_meta")
     private String vendorMeta;
 
+    @Column(name = "callback_endpoint")
     private String callBackEndpoint;
 
+    @Column(name = "vendor_authentication_key")
     private String vendorAuthenticationKey;
 
+    @Column(name = "queue_authentication_key")
     private String queueAuthenticationKey;
 
-    private String currency;
+    @Column(name = "currency")
+    private String currency;    // CurrencyType
 
-//
-//    public Vendor(String vendorName){
-//        this.vendorName = vendorName;
-//    }
+//    @Column(name = "county")
+//    private String country;     // Todo: [countryName(IND, USA, etc), countryCode(+91, +1, etc)]
+
+
+    public Vendor(String vendorName){
+        this.vendorName = vendorName;
+    }
 
 }

@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Sanyam Goel created on 10/6/18
@@ -21,17 +18,20 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class MifosQueueLog extends BaseEntity {
 
-//    mifos_queue_log(id, vendor_id, transaction_id, external_reference_id,request_object)
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "vendor_id")
     private int vendorId;
 
+    @Column(name = "transaction_id")
     private int transactionId;
 
+    @Column(name = "external_reference_id")
     private String externalReferenceId;
 
+    @Column(name = "request_object")
     private String requestObject;
+
 }

@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Sanyam Goel created on 10/6/18
@@ -25,12 +22,16 @@ public class ErrorInfo extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "vendor_id")
     private int vendorId;
 
+    @Column(name = "error_code")
     private String errorCode;
 
+    @Column(name = "error_description")
     private String errorDescription;
 
+    @Column(name = "http_status_code")
     private String httpStatusCode;
 
 }

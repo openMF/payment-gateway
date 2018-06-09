@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 
 /**
  * @author Sanyam Goel created on 9/6/18
@@ -21,8 +20,12 @@ import javax.persistence.PreUpdate;
 @NoArgsConstructor
 public class BaseEntity {
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+//    @CreatedDate // Todo
     protected long createdAt;
 
+    @Column(name = "updated_at", nullable = false, updatable = false)
+//    @LastModifiedDate // Todo
     protected long updatedAt;
 
     @PrePersist
