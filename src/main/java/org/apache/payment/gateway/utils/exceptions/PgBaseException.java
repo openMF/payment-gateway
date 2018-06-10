@@ -34,11 +34,11 @@ public class PgBaseException extends RuntimeException{
         this.errorCode = errorCode;
     }
 
-    public String getDeveloperCode() {
+    public String getErrorCode() {
         return this.errorCode;
     }
 
-    public void setDeveloperCode(String errorCode) {
+    public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }
 
