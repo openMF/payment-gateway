@@ -20,18 +20,22 @@ public class MifosQueueLog extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name = "vendor_id")
-    private int vendorId;
+    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    private long vendorId;
 
     @Column(name = "transaction_id")
-    private int transactionId;
+    private long transactionId;
 
     @Column(name = "external_reference_id")
     private String externalReferenceId;
 
     @Column(name = "request_object")
     private String requestObject;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
+    private Vendor vendor;
 
 }

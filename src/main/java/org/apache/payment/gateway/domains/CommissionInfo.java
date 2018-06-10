@@ -16,15 +16,15 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "commission_info")
 public class CommissionInfo extends BaseEntity {
 
     @Id
-    @Column(name = "id", unique = true) // Todo is this annotation necessaty here?
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name = "vendor_id")
-    private int vendorId;
+    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    private long vendorId;
 
     @Column(name = "commission_type", precision = 4)
     private double commissionType;  // {FLAT/PERCENTAGE}
@@ -41,9 +41,11 @@ public class CommissionInfo extends BaseEntity {
     @Column(name = "range_end", precision = 4)
     private double rangeEnd;
 
-    // Todo
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", nullable = false)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
     private Vendor vendor;
+
+    // select * from vendor inner join commission_info on commission_info.vendor_id = vendor.vendor_id;
 
 }

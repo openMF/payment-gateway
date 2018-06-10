@@ -33,7 +33,8 @@ public class TestService {
     @Transactional
     public Vendor setVendor(String vendorName){
         Vendor vendor = new Vendor(vendorName);
-        vendor.setId(2);
+//        vendor.setId(2);
+        vendor.setVendorId(2);
         paymentGatewayRepository.update(vendor);
         return vendor;
     }

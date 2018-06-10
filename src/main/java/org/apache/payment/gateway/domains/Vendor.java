@@ -19,10 +19,11 @@ import javax.persistence.*;
 public class Vendor extends BaseEntity {
 
     @Id
+    @Column(name = "vendor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long vendorId;
 
-    @Column(name = "vendor_name", length = 63)
+    @Column(name = "vendor_name", length = 63, nullable = false)
     private String vendorName;
 
     @Column(name = "is_active")
@@ -48,6 +49,12 @@ public class Vendor extends BaseEntity {
 
 //    @Column(name = "county")
 //    private String country;     // Todo: [countryName(IND, USA, etc), countryCode(+91, +1, etc)]
+
+//    @Column(name = "country_name")
+//    private String countryName;
+//
+//    @Column(name = "country_code")
+//    private String countryCode;
 
 
     public Vendor(String vendorName){

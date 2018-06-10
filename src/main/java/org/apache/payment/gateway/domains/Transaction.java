@@ -20,10 +20,10 @@ public class Transaction extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name = "vendor_id")
-    private int vendorId;
+    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    private long vendorId;
 
     @Column(name = "client_name")
     private String clientName;
@@ -68,9 +68,14 @@ public class Transaction extends BaseEntity {
     private String status;  // INITIATED, PROCESSED, REFUNDED, FAILED
 
     @Column(name = "error_info_id")
-    private int errorInfoId;
+    private long errorInfoId;
 
     @Column(name = "transaction_type")
     private String transactionType; // INBOUND/OUTBOUND
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
+    private Vendor vendor;
 
 }

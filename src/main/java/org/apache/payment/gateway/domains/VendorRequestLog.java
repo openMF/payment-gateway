@@ -20,14 +20,18 @@ public class VendorRequestLog extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name = "vendor-id")
-    private int vendorId;
+    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    private long vendorId;
 
     @Column(name = "external_refernce_id")
     private String externalReferenceId;
 
     @Column(name = "request_object")
     private String requestObject;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
+    private Vendor vendor;
 }

@@ -20,10 +20,10 @@ public class ErrorInfo extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Column(name = "vendor_id")
-    private int vendorId;
+    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    private long vendorId;
 
     @Column(name = "error_code")
     private String errorCode;
@@ -33,5 +33,10 @@ public class ErrorInfo extends BaseEntity {
 
     @Column(name = "http_status_code")
     private String httpStatusCode;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
+    private Vendor vendor;
 
 }
