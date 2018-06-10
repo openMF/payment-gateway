@@ -40,7 +40,7 @@ public class Transaction extends BaseEntity {
     private String clientAccountNumber;
 
     @Column(name = "client_email_id", nullable = true)
-    private String clientEmaidID;   // Todo: Nullable
+    private String clientEmailID;
 
     @Column(name = "account_type", nullable = false)
     private String accountType;
@@ -72,8 +72,8 @@ public class Transaction extends BaseEntity {
     @Column(name = "status", nullable = false)
     private String status;  // INITIATED, PROCESSED, REFUNDED, FAILED
 
-    @Column(name = "error_info_id", insertable = false, updatable = false, nullable = false)
-    private long errorInfoId;
+//    @Column(name = "error_info_id", insertable = false, updatable = false, nullable = false)
+//    private long errorInfoId;
 
     @Column(name = "transaction_type", nullable = false)
     private String transactionType; // INBOUND/OUTBOUND
@@ -83,8 +83,8 @@ public class Transaction extends BaseEntity {
     @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
     private Vendor vendor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "error_info_id", referencedColumnName = "error_info_id", nullable = false)
-    private ErrorInfo errorInfo;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "error_info_id", referencedColumnName = "error_info_id", nullable = false)
+//    private ErrorInfo errorInfo;
 
 }
