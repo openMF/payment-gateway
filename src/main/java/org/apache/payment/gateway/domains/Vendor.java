@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "vendor")
 public class Vendor extends BaseEntity {
 
     @Id
@@ -26,25 +27,25 @@ public class Vendor extends BaseEntity {
     @Column(name = "vendor_name", length = 63, nullable = false)
     private String vendorName;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
-    @Column(name = "vendor_api_key")
+    @Column(name = "vendor_api_key", nullable = false, unique = true) // Todo check Unique
     private String vendorApiKey;
 
     @Column(name = "vendor_meta")
     private String vendorMeta;
 
-    @Column(name = "callback_endpoint")
+    @Column(name = "callback_endpoint", nullable = false)
     private String callBackEndpoint;
 
-    @Column(name = "vendor_authentication_key")
+    @Column(name = "vendor_authentication_key", nullable = false)
     private String vendorAuthenticationKey;
 
-    @Column(name = "queue_authentication_key")
+    @Column(name = "queue_authentication_key", nullable = false)
     private String queueAuthenticationKey;
 
-    @Column(name = "currency")
+    @Column(name = "currency", nullable = false)
     private String currency;    // CurrencyType
 
 //    @Column(name = "county")

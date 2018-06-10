@@ -16,6 +16,10 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "vendor_request_log", indexes = {
+        @Index(columnList = "vendor_id", name = "vendor_id"),
+        @Index(columnList = "vendor_reference_id", name = "vendor_reference_id")
+})
 public class VendorRequestLog extends BaseEntity {
 
     @Id
@@ -25,8 +29,8 @@ public class VendorRequestLog extends BaseEntity {
     @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
     private long vendorId;
 
-    @Column(name = "external_refernce_id")
-    private String externalReferenceId;
+    @Column(name = "vendor_reference_id", nullable = false)
+    private String vendorReferenceId;
 
     @Column(name = "request_object")
     private String requestObject;

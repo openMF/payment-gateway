@@ -16,7 +16,9 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "commission_info")
+@Table(name = "commission_info", indexes = {
+        @Index(columnList = "vendor_id", name = "vendor_id")
+})
 public class CommissionInfo extends BaseEntity {
 
     @Id

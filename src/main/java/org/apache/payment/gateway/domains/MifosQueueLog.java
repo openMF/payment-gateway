@@ -16,6 +16,10 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "mifos_queue_log", indexes = {
+        @Index(columnList = "vendor_id", name = "vendor_id"),
+        @Index(columnList = "vendor_reference_id", name = "vendor_reference_id")
+})
 public class MifosQueueLog extends BaseEntity {
 
     @Id
@@ -25,17 +29,21 @@ public class MifosQueueLog extends BaseEntity {
     @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
     private long vendorId;
 
-    @Column(name = "transaction_id")
+    @Column(name = "transaction_id", insertable = false, updatable = false, nullable = false, unique = true)
     private long transactionId;
 
-    @Column(name = "external_reference_id")
-    private String externalReferenceId;
+    @Column(name = "vendor_reference_id", nullable = false)
+    private String vendorReferenceId;         // vendor_reference_id -> sent by vendor
 
-    @Column(name = "request_object")
+    @Column(name = "request_object", nullable = false)
     private String requestObject;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
     private Vendor vendor;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transaction_id", referencedColumnName = "transaction_id", nullable = false)
+    private Transaction transaction;
 }

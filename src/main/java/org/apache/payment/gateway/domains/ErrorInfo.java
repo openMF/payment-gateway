@@ -16,22 +16,26 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "error_info", indexes = {
+        @Index(columnList = "vendor_id", name = "vendor_id")
+})
 public class ErrorInfo extends BaseEntity {
 
     @Id
+    @Column(name = "error_info_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long errorInfoId;
 
     @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
     private long vendorId;
 
-    @Column(name = "error_code")
+    @Column(name = "error_code", nullable = false)
     private String errorCode;
 
     @Column(name = "error_description")
     private String errorDescription;
 
-    @Column(name = "http_status_code")
+    @Column(name = "http_status_code", nullable = false)
     private String httpStatusCode;
 
 
