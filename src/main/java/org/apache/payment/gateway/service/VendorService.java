@@ -22,7 +22,7 @@ public class VendorService {
 
     @Loggable
     public List<Vendor> getAllVendors() {
-        return null;
+        return vendorRepository.getAll();
     }
 
     @Loggable
