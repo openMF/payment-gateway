@@ -1,7 +1,6 @@
 package org.apache.payment.gateway.service;
 
 import org.apache.payment.gateway.config.aspect.Loggable;
-import org.apache.payment.gateway.domains.Transaction;
 import org.apache.payment.gateway.domains.Vendor;
 import org.apache.payment.gateway.repository.PaymentGatewayRepository;
 import org.apache.payment.gateway.utils.Utility;

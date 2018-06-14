@@ -45,5 +45,5 @@ public class MifosQueueLog extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id", referencedColumnName = "transaction_id", nullable = false)
-    private Transaction transaction;
+    private TransactionData transactionData;
 }

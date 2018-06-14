@@ -16,11 +16,11 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transaction", indexes = {
+@Table(name = "transaction_data", indexes = {
         @Index(columnList = "vendor_id", name = "vendor_id"),
         @Index(columnList = "vendor_reference_id", name = "vendor_reference_id")
 })
-public class Transaction extends BaseEntity {
+public class TransactionData extends BaseEntity {
 
     @Id
     @Column(name = "transaction_id")
