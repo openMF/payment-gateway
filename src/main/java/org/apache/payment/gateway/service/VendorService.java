@@ -30,4 +30,9 @@ public class VendorService {
         return vendorRepository.getById(id, Vendor.class);
     }
 
+    @Loggable
+    public List<Vendor> getAllActiveVendors() {
+        return vendorRepository.getAllActiveVendors();
+    }
+
 }

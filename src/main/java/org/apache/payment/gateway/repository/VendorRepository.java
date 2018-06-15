@@ -34,4 +34,9 @@ public class VendorRepository extends AbstractBaseRepository {
         return output;
     }
 
+    public List<Vendor> getAllActiveVendors() {
+        List<Vendor> output = (List<Vendor>) this.getCurrentSession().createSQLQuery("Select * from vendor where is_active = 1").list();
+        return output;
+    }
+
 }
