@@ -47,7 +47,7 @@ public class VendorController {
         return new ResponseEntity<>(vendor, HttpStatus.OK);
     }
 
-    // get All active vendors
+    // get all active vendors
     @RequestMapping(method = RequestMethod.GET, value = "/active-vendors", produces = "application/json")
     public ResponseEntity<List<Vendor>> getAllActiveVendors() {
         List<Vendor> vendors = vendorService.getAllActiveVendors();
