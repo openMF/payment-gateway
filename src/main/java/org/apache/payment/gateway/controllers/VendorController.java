@@ -1,6 +1,7 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.dto.VendorDTO;
+import org.apache.payment.gateway.dtos.response.ResponseModel;
 import org.apache.payment.gateway.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +19,33 @@ import java.util.List;
 
 @RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
-public class VendorController {
+public class VendorController extends RestResponseHandler {
 
     @Autowired
     VendorService vendorService;
 
     // get all vendors
     @RequestMapping(method = RequestMethod.GET, value = "/vendors", produces = "application/json")
-    public ResponseEntity<List<VendorDTO>> getAllVendors() {
+    public ResponseEntity<ResponseModel<List<VendorDTO>>> getAllVendors() {
         List<VendorDTO> vendors = vendorService.getAllVendors();
-        return new ResponseEntity<List<VendorDTO>>(vendors, HttpStatus.OK);
-
+        return super.responseStandardizer(vendors);
     }
 
     // get vendor by id
     @RequestMapping(method = RequestMethod.GET, value = "/vendor/{id}", produces = "application/json")
-    public ResponseEntity<VendorDTO> getVendorById(
+    public ResponseEntity<ResponseModel<VendorDTO>> getVendorById(
             @PathVariable("id") long id
     ) {
         VendorDTO vendor = vendorService.getVendorById(id);
-        return new ResponseEntity<>(vendor, HttpStatus.OK);
+//        return new ResponseEntity<>(vendor, HttpStatus.OK);
+        return super.responseStandardizer(vendor);
     }
 
     // get all active vendors
     @RequestMapping(method = RequestMethod.GET, value = "/active-vendors", produces = "application/json")
-    public ResponseEntity<List<VendorDTO>> getAllActiveVendors() {
+    public ResponseEntity<ResponseModel<List<VendorDTO>>> getAllActiveVendors() {
         List<VendorDTO> vendors = vendorService.getAllActiveVendors();
-        return new ResponseEntity<>(vendors, HttpStatus.OK);
+//        return new ResponseEntity<>(vendors, HttpStatus.OK);
+        return super.responseStandardizer(vendors);
     }
 }
