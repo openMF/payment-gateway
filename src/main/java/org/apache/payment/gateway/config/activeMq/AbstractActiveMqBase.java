@@ -1,7 +1,7 @@
 package org.apache.payment.gateway.config.activeMq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.payment.gateway.utils.ErrorCodes;
+import org.apache.payment.gateway.enums.ErrorCodes;
 import org.apache.payment.gateway.utils.exceptions.PgActiveMqException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import javax.jms.Connection;
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 import javax.jms.Session;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Rahul Goel created on 10/6/18

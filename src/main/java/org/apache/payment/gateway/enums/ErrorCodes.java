@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.utils;
+package org.apache.payment.gateway.enums;
 
 /**
  * @author Rahul Goel created on 10/6/18
