@@ -1,6 +1,10 @@
 package org.apache.payment.gateway.controllers;
 
+import org.apache.payment.gateway.domains.Vendor;
+import org.apache.payment.gateway.dtos.response.ResponseModel;
+import org.apache.payment.gateway.enums.ErrorCodes;
 import org.apache.payment.gateway.service.TestService;
+import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
-public class TestController {
+public class TestController extends RestResponseHandler {
 
     @Autowired
     TestService testService;
@@ -24,14 +28,15 @@ public class TestController {
     public ResponseEntity<Object> getTestEndpoint(
             @RequestParam(required = false) String testParam
     ){
-        return new ResponseEntity<>(testService.testServiceMethod(testParam), HttpStatus.OK);
+        throw new PgResourceNotFoundException(ErrorCodes.ACTIVEMQ_001.getDescription(), ErrorCodes.ACTIVEMQ_001.getCode());
+//        return new ResponseEntity<>(testService.testServiceMethod(testParam), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/vendor", produces = "application/json")
-    public ResponseEntity<Object> setVendor(
+    public ResponseEntity<ResponseModel<Vendor>> setVendor(
             @RequestParam(required = false) String vendorName
     ){
-        return new ResponseEntity<>(testService.setVendor(vendorName), HttpStatus.OK);
+        return super.responseStandardizer(testService.setVendor(vendorName));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/vendor", produces = "application/json")
@@ -40,6 +45,5 @@ public class TestController {
     ){
         return new ResponseEntity<>(testService.getVendor(vendorName), HttpStatus.OK);
     }
-
 
 }
