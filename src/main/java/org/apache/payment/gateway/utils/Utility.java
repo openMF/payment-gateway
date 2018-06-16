@@ -1,7 +1,10 @@
 package org.apache.payment.gateway.utils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.payment.gateway.config.activeMq.models.PublishBody;
@@ -9,6 +12,7 @@ import org.apache.payment.gateway.config.activeMq.models.QueueMessageModel;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Rahul Goel created on 2/6/18
@@ -18,6 +22,9 @@ import java.util.Collection;
 public class Utility {
 
     private static Logger logger = LogManager.getLogger(Utility.class);
+
+    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static TypeFactory typeFactory = objectMapper.getTypeFactory();
 
     public static boolean isNullOrBlank(String key){
         int strLen;
@@ -41,6 +48,26 @@ public class Utility {
             return jsonToString;
         } catch (Exception var3) {
             logger.error("exception", var3);
+            return null;
+        }
+    }
+
+    public static <T1> List<T1> convertModelList(List<? extends Object> sourceClass, Class<T1> destinationClass) {
+        try {
+            CollectionType collectionType = typeFactory.constructCollectionType(List.class, destinationClass);
+            return objectMapper.convertValue(sourceClass, collectionType);
+        } catch (Exception exp) {
+            logger.error("[convertModelList] Exception occurred while converting model list", exp);
+            return null;
+        }
+    }
+
+    public static <T> T convertModel(Object sourceClass, Class<T> destinationClass) {
+        try {
+//            JavaType javaType = typeFactory.constructType(destinationClass);
+            return objectMapper.convertValue(sourceClass, destinationClass);
+        } catch (Exception exp) {
+            logger.error("Exception", exp);
             return null;
         }
     }

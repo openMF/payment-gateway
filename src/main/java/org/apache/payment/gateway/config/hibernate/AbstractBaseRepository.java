@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.payment.gateway.utils.exceptions.PgHibernateException;
 import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Rahul Goel created on 3/6/18
@@ -41,6 +43,15 @@ public class AbstractBaseRepository {
         } else {
             return output;
         }
+    }
+
+    public <T> List<T> getList(Class<T> clz) {
+        try{
+            return this.getCurrentSession().createCriteria(clz).list();
+        }catch (HibernateException ex){
+            throw new PgHibernateException(String.format("Hibernate Exception occurred with cause %s", ex.getMessage()), ex);
+        }
+
     }
 
     public Serializable create(Object entity) {

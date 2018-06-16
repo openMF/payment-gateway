@@ -2,7 +2,9 @@ package org.apache.payment.gateway.repository;
 
 import org.apache.payment.gateway.config.hibernate.AbstractBaseRepository;
 import org.apache.payment.gateway.domains.Vendor;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,23 +22,19 @@ public class VendorRepository extends AbstractBaseRepository {
 //     db layer
 //    All Database interaction is done via repository
 
-//    @PersistenceContext
-//    EntityManager entityManager;
-//
-//    public List<Vendor> getAll() {
-//
-//        return entityManager.createQuery("select * from vendor").getResultList();
+
+//    public List<Vendor> getAllVendors() {
+//        List<Vendor> output = this.getCurrentSession().createCriteria(Vendor.class).list();
+//        return output;
 //    }
 
 
-    public List<Vendor> getAll() {
-        List<Vendor> output = this.getCurrentSession().createCriteria(Vendor.class).list();
-        return output;
-    }
 
     public List<Vendor> getAllActiveVendors() {
-        List<Vendor> output = (List<Vendor>) this.getCurrentSession().createSQLQuery("Select * from vendor where is_active = 1").list();
-        return output;
+        Criteria criteria = this.getCurrentSession().createCriteria(Vendor.class);
+        criteria.add(Restrictions.eq("isActive", true));
+        return criteria.list();
+
     }
 
 }

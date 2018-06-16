@@ -5,6 +5,7 @@ import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author Sanyam Goel created on 15/6/18
  */
 
-@RequestMapping(value = "/transactions-data")
+@RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
 public class TransactionsController {
 
@@ -31,5 +32,16 @@ public class TransactionsController {
         }
         return new ResponseEntity<List<TransactionData>>(transactions, HttpStatus.OK);
 
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
+    public ResponseEntity<TransactionData> getTransactionByVendorReferenceId(
+            @PathVariable String vendorRefId
+    ) {
+        TransactionData transactionData = transactionsDataService.getTransactionByVendorReferenceId(vendorRefId);
+        if (transactionData == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(transactionData, HttpStatus.OK);
     }
 }

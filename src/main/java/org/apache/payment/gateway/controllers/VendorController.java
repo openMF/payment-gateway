@@ -1,6 +1,7 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.domains.Vendor;
+import org.apache.payment.gateway.dto.VendorDTO;
 import org.apache.payment.gateway.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author Sanyam Goel created on 12/6/18
  */
 
-@RequestMapping(value = "/vendor-data")
+@RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
 public class VendorController {
 
@@ -25,35 +26,32 @@ public class VendorController {
 
     // get all vendors
     @RequestMapping(method = RequestMethod.GET, value = "/vendors", produces = "application/json")
-    public ResponseEntity<List<Vendor>> getAllVendors() {
-        List<Vendor> vendors = vendorService.getAllVendors();
-        if(vendors.isEmpty()){
-            return new ResponseEntity<List<Vendor>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<Vendor>>(vendors, HttpStatus.OK);
+    public ResponseEntity<List<VendorDTO>> getAllVendors() {
+        List<VendorDTO> vendors = vendorService.getAllVendors();
+        return new ResponseEntity<List<VendorDTO>>(vendors, HttpStatus.OK);
 
     }
 
     // get vendor by id
     @RequestMapping(method = RequestMethod.GET, value = "/vendor/{id}", produces = "application/json")
-    public ResponseEntity<Vendor> getVendorById(
+    public ResponseEntity<VendorDTO> getVendorById(
             @PathVariable("id") long id
     ) {
-        Vendor vendor = vendorService.getVendorById(id);
-        if (vendor == null) {
-            System.out.println("Vendor with id " + id + " not found");
-            return new ResponseEntity<Vendor>(HttpStatus.NOT_FOUND);
-        }
+        VendorDTO vendor = vendorService.getVendorById(id);
+//        if (vendor == null) {
+//            System.out.println("Vendor with id " + id + " not found");
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity<>(vendor, HttpStatus.OK);
     }
 
     // get all active vendors
     @RequestMapping(method = RequestMethod.GET, value = "/active-vendors", produces = "application/json")
-    public ResponseEntity<List<Vendor>> getAllActiveVendors() {
-        List<Vendor> vendors = vendorService.getAllActiveVendors();
-        if(vendors.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<List<VendorDTO>> getAllActiveVendors() {
+        List<VendorDTO> vendors = vendorService.getAllActiveVendors();
+//        if(vendors.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
         return new ResponseEntity<>(vendors, HttpStatus.OK);
     }
 }

@@ -20,7 +20,11 @@ public class TransactionsDataService {
 
     @Loggable
     public List<TransactionData> getAllTransactions() {
-        return transactionsDataRepository.getAll();
+        return transactionsDataRepository.getList(TransactionData.class);
     }
 
+    @Loggable
+    public TransactionData getTransactionByVendorReferenceId(String vendorRefId) {
+        return transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
+    }
 }
