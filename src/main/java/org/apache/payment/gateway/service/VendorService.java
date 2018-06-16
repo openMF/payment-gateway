@@ -31,8 +31,6 @@ public class VendorService {
             throw new PgResourceNotFoundException("Vendor List not found");
         }
         return vendorsDTO;
-//        List<Vendor> vendors = vendorRepository.getList(Vendor.class);
-//        return utility.convertModelList(vendors, VendorDTO.class);
     }
 
     @Loggable
@@ -53,10 +51,6 @@ public class VendorService {
             throw new PgResourceNotFoundException("Active vendor List not found");
         }
         return vendorsDTO;
-//
-//        List<Vendor> vendors = vendorRepository.getAllActiveVendors();
-//        return utility.convertModelList(vendors, VendorDTO.class);
-//        return vendorRepository.getAllActiveVendors();
     }
 
 }

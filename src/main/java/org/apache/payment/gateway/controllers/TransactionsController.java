@@ -1,6 +1,7 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.domains.TransactionData;
+import org.apache.payment.gateway.dto.TransactionDTO;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,15 @@ public class TransactionsController {
 
     // get all transactions
     @RequestMapping(method = RequestMethod.GET, value = "/transactions", produces = "application/json")
-    public ResponseEntity<List<TransactionData>> getAllTransactions() {
-        List<TransactionData> transactions = transactionsDataService.getAllTransactions();
-        if(transactions.isEmpty()){
-            return new ResponseEntity<List<TransactionData>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<TransactionData>>(transactions, HttpStatus.OK);
+    public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
+//        List<TransactionData> transactions = transactionsDataService.getAllTransactions();
+////        if(transactions.isEmpty()){
+////            return new ResponseEntity<List<TransactionData>>(HttpStatus.NO_CONTENT);
+////        }
+//        return new ResponseEntity<List<TransactionData>>(transactions, HttpStatus.OK);
+
+        List<TransactionDTO> vendors = transactionsDataService.getAllTransactions();
+        return new ResponseEntity<List<TransactionDTO>>(vendors, HttpStatus.OK);
 
     }
 

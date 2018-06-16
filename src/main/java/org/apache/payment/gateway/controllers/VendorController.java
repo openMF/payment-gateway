@@ -1,6 +1,5 @@
 package org.apache.payment.gateway.controllers;
 
-import org.apache.payment.gateway.domains.Vendor;
 import org.apache.payment.gateway.dto.VendorDTO;
 import org.apache.payment.gateway.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,6 @@ public class VendorController {
             @PathVariable("id") long id
     ) {
         VendorDTO vendor = vendorService.getVendorById(id);
-//        if (vendor == null) {
-//            System.out.println("Vendor with id " + id + " not found");
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
         return new ResponseEntity<>(vendor, HttpStatus.OK);
     }
 
@@ -49,9 +44,6 @@ public class VendorController {
     @RequestMapping(method = RequestMethod.GET, value = "/active-vendors", produces = "application/json")
     public ResponseEntity<List<VendorDTO>> getAllActiveVendors() {
         List<VendorDTO> vendors = vendorService.getAllActiveVendors();
-//        if(vendors.isEmpty()){
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
         return new ResponseEntity<>(vendors, HttpStatus.OK);
     }
 }

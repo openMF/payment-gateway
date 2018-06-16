@@ -6,11 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Sanyam Goel created on 16/6/18
  */
@@ -31,5 +26,7 @@ public class VendorDTO {
     private String vendorAuthenticationKey;
     private String queueAuthenticationKey;
     private String currency;    // CurrencyType
+    private long createdAt;
+    private long updatedAt;
 
 }
