@@ -2,6 +2,7 @@ package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.domains.TransactionData;
 import org.apache.payment.gateway.dto.TransactionDTO;
+import org.apache.payment.gateway.dtos.response.ResponseModel;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,23 +20,23 @@ import java.util.List;
 
 @RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
-public class TransactionsController {
+public class TransactionsController extends RestResponseHandler {
 
     @Autowired
     TransactionsDataService transactionsDataService;
 
     // get all transactions
     @RequestMapping(method = RequestMethod.GET, value = "/transactions", produces = "application/json")
-    public ResponseEntity<List<TransactionDTO>> getAllTransactions() {
+    public ResponseEntity<ResponseModel<List<TransactionDTO>>> getAllTransactions() {
 //        List<TransactionData> transactions = transactionsDataService.getAllTransactions();
 ////        if(transactions.isEmpty()){
 ////            return new ResponseEntity<List<TransactionData>>(HttpStatus.NO_CONTENT);
 ////        }
 //        return new ResponseEntity<List<TransactionData>>(transactions, HttpStatus.OK);
 
-        List<TransactionDTO> vendors = transactionsDataService.getAllTransactions();
-        return new ResponseEntity<List<TransactionDTO>>(vendors, HttpStatus.OK);
-
+        List<TransactionDTO> transactions = transactionsDataService.getAllTransactions();
+//        return new ResponseEntity<List<TransactionDTO>>(transactions, HttpStatus.OK);
+        return super.responseStandardizer(transactions);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")

@@ -15,6 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TransactionDTO {
 
     private long transactionId;

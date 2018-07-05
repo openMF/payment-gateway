@@ -1,11 +1,13 @@
 package org.apache.payment.gateway.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Sanyam Goel created on 9/6/18
@@ -20,6 +22,7 @@ import javax.persistence.*;
         @Index(columnList = "vendor_id", name = "vendor_id"),
         @Index(columnList = "vendor_reference_id", name = "vendor_reference_id")
 })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TransactionData extends BaseEntity {
 
     @Id

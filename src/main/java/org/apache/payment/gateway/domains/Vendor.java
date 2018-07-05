@@ -1,5 +1,6 @@
 package org.apache.payment.gateway.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "vendor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Vendor extends BaseEntity {
 
     @Id

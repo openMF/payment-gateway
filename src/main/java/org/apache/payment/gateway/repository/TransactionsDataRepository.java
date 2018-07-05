@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 public class TransactionsDataRepository extends AbstractBaseRepository {
 
-    public List<TransactionData> getAllTransactions() {
-//        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
-        return this.getCurrentSession().createCriteria(TransactionData.class).list();
-//        List<TransactionData> output = (List<TransactionData>) this.getCurrentSession().createSQLQuery("Select * from transaction_data").list();
-//        List<TransactionData> output = this.getCurrentSession().createCriteria(TransactionData.class).list();
-//        return output;
-    }
+//     public List<TransactionData> getAllTransactions() {
+////        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
+//        return this.getCurrentSession().createCriteria(TransactionData.class).list();
+////        List<TransactionData> output = (List<TransactionData>) this.getCurrentSession().createSQLQuery("Select * from transaction_data").list();
+////        List<TransactionData> output = this.getCurrentSession().createCriteria(TransactionData.class).list();
+////        return output;
+//    }
 
 
     // Get Transaction by Vendor Reference ID
@@ -30,5 +30,10 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
         TransactionData output = (TransactionData) this.getCurrentSession().createSQLQuery("Select * from transaction_data where vendor_reference_id = " + vendorRefId);
         return output;
     }
+
+//    public List<TransactionData> getAllTransaction(){
+//        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
+//
+//    }
 
 }
