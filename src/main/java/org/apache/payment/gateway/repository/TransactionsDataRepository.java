@@ -25,7 +25,7 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 ////        return output;
 //    }
 
-    public List<TransactionData> getTransactionsFromDb(long nextTransactionId, int limit, List<Long> vendorIdList) {
+    public List<TransactionData> getTransactionsFromDb(long nextTransactionId, int limit, List<Long> vendorIdList, String clientPhoneNumber) {
         /*
           select COUNT(*) From Transaction_data
           Integer count = ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
@@ -37,6 +37,10 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 
         if(vendorIdList != null && !vendorIdList.isEmpty()){
             criteria.add(Restrictions.in("vendorId", vendorIdList));
+        }
+
+        if(clientPhoneNumber != null) {
+            criteria.add(Restrictions.eq("clientPhoneNumber", clientPhoneNumber));
         }
 
         criteria.setMaxResults(limit);

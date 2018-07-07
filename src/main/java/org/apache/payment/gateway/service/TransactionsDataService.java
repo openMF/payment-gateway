@@ -44,8 +44,8 @@ public class TransactionsDataService {
     }
 
     @Loggable
-    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList) {
-        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList);
+    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber) {
+        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber);
         List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
 
         if(transactionDTOS == null || transactionDTOS.isEmpty()) {
@@ -61,5 +61,14 @@ public class TransactionsDataService {
         int transactionListSize = transactionDTOS.size();
         nextComputedTransactionId =  transactionListSize < size ? -1 : transactionDTOS.get(transactionListSize - 1).getTransactionId();
         return new TransactionsResponseDTO(transactionDTOS, nextComputedTransactionId, totalCount);
+    }
+
+    public TransactionDTO getTransactionByTransactionId(long transactionId) {
+        TransactionData transactionData = transactionsDataRepository.getById(transactionId, TransactionData.class);
+        TransactionDTO transactionDTO = utility.convertModel(transactionData, TransactionDTO.class);
+        if(transactionDTO == null){
+            throw new PgResourceNotFoundException("Transaction not found for given id " + transactionId);
+        }
+        return transactionDTO;
     }
 }
