@@ -3,6 +3,8 @@ package org.apache.payment.gateway.repository;
 import org.apache.payment.gateway.config.hibernate.AbstractBaseRepository;
 import org.apache.payment.gateway.domains.TransactionData;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,24 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 ////        return output;
 //    }
 
+    public List<TransactionData> getTransactionsFromDb(long nextTransactionId, int limit) {
+        /*
+          select COUNT(*) From Transaction_data
+          Integer count = ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+          SELECT * FROM `transaction_data` LIMIT 5 OFFSET 0; starting from 0 to 5
+          .setFirstResult(firstResult||offset).setMaxResults(limit);
+        */
+        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
+        criteria.add(Restrictions.gt("transactionId", nextTransactionId));
+        criteria.setMaxResults(limit);
+        return criteria.list();
+    }
+
+    public Integer getTotalCount() {
+        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
+        return ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+    }
+
 
     // Get Transaction by Vendor Reference ID
     public TransactionData getTransactionByVendorReferenceId(String vendorRefId) {
@@ -30,10 +50,5 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
         TransactionData output = (TransactionData) this.getCurrentSession().createSQLQuery("Select * from transaction_data where vendor_reference_id = " + vendorRefId);
         return output;
     }
-
-//    public List<TransactionData> getAllTransaction(){
-//        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
-//
-//    }
 
 }
