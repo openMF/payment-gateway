@@ -26,9 +26,10 @@ public class TransactionsController extends RestResponseHandler {
             @RequestParam(required = false, name = "size", defaultValue = "10") int size,
             @RequestParam(required = false, name = "isTotalCountRequired", defaultValue = "false") boolean isTotalCountRequired,
             @RequestParam(required = false, name = "vendorIdList") List<Long> vendorIdList,
-            @RequestParam(required = false, name = "clientPhoneNumber") String phoneNumber
+            @RequestParam(required = false, name = "clientPhoneNumber") String phoneNumber,
+            @RequestParam(required = false, name = "clientAccountNumber") String AccountNumber
     ) {
-        return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber));
+        return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber, AccountNumber));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
@@ -45,11 +46,11 @@ public class TransactionsController extends RestResponseHandler {
     }
 
     // get transaction by id
-    @RequestMapping(method = RequestMethod.GET, value = "/transactions/{transactionsId}", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/transaction/{transactionId}", produces = "application/json")
     public ResponseEntity<ResponseModel<TransactionDTO>> getTransactionById(
-            @PathVariable("transactionsId") long transactionsId
+            @PathVariable("transactionId") long transactionId
     ) {
-        TransactionDTO transaction = transactionsDataService.getTransactionByTransactionId(transactionsId);
+        TransactionDTO transaction = transactionsDataService.getTransactionByTransactionId(transactionId);
         return super.responseStandardizer(transaction);
     }
 }

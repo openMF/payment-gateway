@@ -44,8 +44,8 @@ public class TransactionsDataService {
     }
 
     @Loggable
-    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber) {
-        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber);
+    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber, String clientAccoutNumber) {
+        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber, clientAccoutNumber);
         List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
 
         if(transactionDTOS == null || transactionDTOS.isEmpty()) {
@@ -63,6 +63,7 @@ public class TransactionsDataService {
         return new TransactionsResponseDTO(transactionDTOS, nextComputedTransactionId, totalCount);
     }
 
+    @Loggable
     public TransactionDTO getTransactionByTransactionId(long transactionId) {
         TransactionData transactionData = transactionsDataRepository.getById(transactionId, TransactionData.class);
         TransactionDTO transactionDTO = utility.convertModel(transactionData, TransactionDTO.class);
