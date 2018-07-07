@@ -45,10 +45,14 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 
 
     // Get Transaction by Vendor Reference ID
-    public TransactionData getTransactionByVendorReferenceId(String vendorRefId) {
+    public List<TransactionData> getTransactionByVendorReferenceId(String vendorRefId) {
 //        TransactionData output = this.getCurrentSession().createCriteria(TransactionData.class);
-        TransactionData output = (TransactionData) this.getCurrentSession().createSQLQuery("Select * from transaction_data where vendor_reference_id = " + vendorRefId);
-        return output;
+//        TransactionData output = (TransactionData) this.getCurrentSession().createSQLQuery("Select * from transaction_data where vendor_reference_id = " + vendorRefId);
+//        return output;
+//        select * from transaction_data where vendor_reference_id = "dontknow1";
+        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
+        criteria.add(Restrictions.eq("vendorReferenceId", vendorRefId));
+        return criteria.list();
     }
 
 }

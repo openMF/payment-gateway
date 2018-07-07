@@ -36,8 +36,13 @@ public class TransactionsDataService {
 //    }
 
     @Loggable
-    public TransactionData getTransactionByVendorReferenceId(String vendorRefId) {
-        return transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
+    public List<TransactionDTO> getTransactionByVendorReferenceId(String vendorRefId) {
+        List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
+        List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
+        return transactionDTOS;
+
+
+//        return transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
     }
 
     @Loggable
