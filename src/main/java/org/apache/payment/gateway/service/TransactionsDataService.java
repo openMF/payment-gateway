@@ -40,14 +40,12 @@ public class TransactionsDataService {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
         List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
         return transactionDTOS;
-
-
 //        return transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
     }
 
     @Loggable
-    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired) {
-        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size);
+    public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList) {
+        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList);
         List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
 
         if(transactionDTOS == null || transactionDTOS.isEmpty()) {

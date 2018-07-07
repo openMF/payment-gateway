@@ -24,9 +24,10 @@ public class TransactionsController extends RestResponseHandler {
     public ResponseEntity<ResponseModel<Object>> getAllTransactions(
             @RequestParam(required = false, name = "nextTransactionId", defaultValue = "0") long nextTransactionId,
             @RequestParam(required = false, name = "size", defaultValue = "10") int size,
-            @RequestParam(required = false, name = "isTotalCountRequired", defaultValue = "false") boolean isTotalCountRequired
+            @RequestParam(required = false, name = "isTotalCountRequired", defaultValue = "false") boolean isTotalCountRequired,
+            @RequestParam(required = false, name = "vendorIdList") List<Long> vendorIdList
     ) {
-        return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired));
+        return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
