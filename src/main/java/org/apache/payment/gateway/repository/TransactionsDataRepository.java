@@ -17,14 +17,6 @@ import java.util.List;
 @Repository
 public class TransactionsDataRepository extends AbstractBaseRepository {
 
-//     public List<TransactionData> getAllTransactions() {
-////        Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
-//        return this.getCurrentSession().createCriteria(TransactionData.class).list();
-////        List<TransactionData> output = (List<TransactionData>) this.getCurrentSession().createSQLQuery("Select * from transaction_data").list();
-////        List<TransactionData> output = this.getCurrentSession().createCriteria(TransactionData.class).list();
-////        return output;
-//    }
-
     public List<TransactionData> getTransactionsFromDb(long nextTransactionId, int limit, List<Long> vendorIdList, String clientPhoneNumber, String clientAccountNumber) {
         /*
           select COUNT(*) From Transaction_data
@@ -59,10 +51,7 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 
     // Get Transaction by Vendor Reference ID
     public List<TransactionData> getTransactionByVendorReferenceId(String vendorRefId) {
-//        TransactionData output = this.getCurrentSession().createCriteria(TransactionData.class);
-//        TransactionData output = (TransactionData) this.getCurrentSession().createSQLQuery("Select * from transaction_data where vendor_reference_id = " + vendorRefId);
-//        return output;
-//        select * from transaction_data where vendor_reference_id = "dontknow1";
+//        select * from transaction_data where vendor_reference_id = "?";
         Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
         criteria.add(Restrictions.eq("vendorReferenceId", vendorRefId));
         return criteria.list();

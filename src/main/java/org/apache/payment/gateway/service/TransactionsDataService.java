@@ -24,23 +24,11 @@ public class TransactionsDataService {
     @Autowired
     TransactionsDataRepository transactionsDataRepository;
 
-//    @Loggable
-//    public List<TransactionDTO> getAllTransactions() {
-//        List<TransactionData> transactionData = transactionsDataRepository.getList(TransactionData.class);
-//        List<TransactionDTO> transactionDTO = utility.convertModelList(transactionData, TransactionDTO.class);
-//        if(transactionDTO == null || transactionDTO.isEmpty()) {
-//            throw new PgResourceNotFoundException("Transaction List not found");
-//        }
-//        return transactionDTO;
-////        return transactionsDataRepository.getList(TransactionData.class);
-//    }
-
     @Loggable
     public List<TransactionDTO> getTransactionByVendorReferenceId(String vendorRefId) {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
         List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
         return transactionDTOS;
-//        return transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
     }
 
     @Loggable
@@ -67,9 +55,11 @@ public class TransactionsDataService {
     public TransactionDTO getTransactionByTransactionId(long transactionId) {
         TransactionData transactionData = transactionsDataRepository.getById(transactionId, TransactionData.class);
         TransactionDTO transactionDTO = utility.convertModel(transactionData, TransactionDTO.class);
+
         if(transactionDTO == null){
             throw new PgResourceNotFoundException("Transaction not found for given id " + transactionId);
         }
+
         return transactionDTO;
     }
 }

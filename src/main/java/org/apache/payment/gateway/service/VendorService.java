@@ -27,9 +27,11 @@ public class VendorService {
     public List<VendorDTO> getAllVendors() {
         List<Vendor> vendors = vendorRepository.getList(Vendor.class);
         List<VendorDTO> vendorsDTO = utility.convertModelList(vendors, VendorDTO.class);
+
         if(vendorsDTO == null || vendorsDTO.isEmpty()) {
             throw new PgResourceNotFoundException("Vendor List not found");
         }
+
         return vendorsDTO;
     }
 
@@ -37,9 +39,11 @@ public class VendorService {
     public VendorDTO getVendorById(long id) {
         Vendor vendor = vendorRepository.getById(id, Vendor.class);
         VendorDTO vendorDTO = utility.convertModel(vendor, VendorDTO.class);;
+
         if(vendorDTO == null){
             throw new PgResourceNotFoundException("Vendor not found for given id " + id);
         }
+
         return vendorDTO;
     }
 
@@ -47,9 +51,11 @@ public class VendorService {
     public List<VendorDTO> getAllActiveVendors() {
         List<Vendor> vendors = vendorRepository.getAllActiveVendors();
         List<VendorDTO> vendorsDTO = utility.convertModelList(vendors, VendorDTO.class);
+
         if(vendorsDTO == null || vendorsDTO.isEmpty()) {
             throw new PgResourceNotFoundException("Active vendor List not found");
         }
+
         return vendorsDTO;
     }
 
