@@ -18,7 +18,6 @@ import java.util.List;
  * @author Rahul Goel created on 2/6/18
  */
 
-
 public class Utility {
 
     private static Logger logger = LogManager.getLogger(Utility.class);

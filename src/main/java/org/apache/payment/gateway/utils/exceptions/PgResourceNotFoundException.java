@@ -6,6 +6,7 @@ package org.apache.payment.gateway.utils.exceptions;
 
 
 public class PgResourceNotFoundException extends PgBaseException {
+
     public PgResourceNotFoundException() {
     }
 

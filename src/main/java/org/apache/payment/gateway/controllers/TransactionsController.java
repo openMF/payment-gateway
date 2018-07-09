@@ -1,16 +1,12 @@
 package org.apache.payment.gateway.controllers;
 
-import org.apache.payment.gateway.domains.TransactionData;
 import org.apache.payment.gateway.dto.TransactionDTO;
 import org.apache.payment.gateway.dtos.response.ResponseModel;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -25,28 +21,34 @@ public class TransactionsController extends RestResponseHandler {
     @Autowired
     TransactionsDataService transactionsDataService;
 
-    // get all transactions
-    @RequestMapping(method = RequestMethod.GET, value = "/transactions", produces = "application/json")
-    public ResponseEntity<ResponseModel<List<TransactionDTO>>> getAllTransactions() {
-//        List<TransactionData> transactions = transactionsDataService.getAllTransactions();
-////        if(transactions.isEmpty()){
-////            return new ResponseEntity<List<TransactionData>>(HttpStatus.NO_CONTENT);
-////        }
-//        return new ResponseEntity<List<TransactionData>>(transactions, HttpStatus.OK);
-
-        List<TransactionDTO> transactions = transactionsDataService.getAllTransactions();
-//        return new ResponseEntity<List<TransactionDTO>>(transactions, HttpStatus.OK);
-        return super.responseStandardizer(transactions);
+    // search for paginated transactions
+    @RequestMapping(method = RequestMethod.GET, value = "/transactions/search", produces = "application/json")
+    public ResponseEntity<ResponseModel<Object>> getAllTransactions(
+            @RequestParam(required = false, name = "nextTransactionId", defaultValue = "0") long nextTransactionId,
+            @RequestParam(required = false, name = "size", defaultValue = "10") int size,
+            @RequestParam(required = false, name = "isTotalCountRequired", defaultValue = "false") boolean isTotalCountRequired,
+            @RequestParam(required = false, name = "vendorIdList") List<Long> vendorIdList,
+            @RequestParam(required = false, name = "clientPhoneNumber") String phoneNumber,
+            @RequestParam(required = false, name = "clientAccountNumber") String AccountNumber
+    ) {
+        return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber, AccountNumber));
     }
 
+    @ApiIgnore
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
-    public ResponseEntity<TransactionData> getTransactionByVendorReferenceId(
-            @PathVariable String vendorRefId
+    public ResponseEntity<ResponseModel<List<TransactionDTO>>> getTransactionByVendorReferenceId(
+            @PathVariable("vendorId") String vendorRefId
     ) {
-        TransactionData transactionData = transactionsDataService.getTransactionByVendorReferenceId(vendorRefId);
-        if (transactionData == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(transactionData, HttpStatus.OK);
+        List<TransactionDTO> transactionDTOS = transactionsDataService.getTransactionByVendorReferenceId(vendorRefId);
+        return super.responseStandardizer(transactionDTOS);
+    }
+
+    // get transaction by transaction id
+    @RequestMapping(method = RequestMethod.GET, value = "/transaction/{transactionId}", produces = "application/json")
+    public ResponseEntity<ResponseModel<TransactionDTO>> getTransactionById(
+            @PathVariable("transactionId") long transactionId
+    ) {
+        TransactionDTO transaction = transactionsDataService.getTransactionByTransactionId(transactionId);
+        return super.responseStandardizer(transaction);
     }
 }

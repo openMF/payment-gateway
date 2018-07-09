@@ -37,7 +37,6 @@ public class VendorController extends RestResponseHandler {
             @PathVariable("id") long id
     ) {
         VendorDTO vendor = vendorService.getVendorById(id);
-//        return new ResponseEntity<>(vendor, HttpStatus.OK);
         return super.responseStandardizer(vendor);
     }
 
@@ -45,7 +44,6 @@ public class VendorController extends RestResponseHandler {
     @RequestMapping(method = RequestMethod.GET, value = "/active-vendors", produces = "application/json")
     public ResponseEntity<ResponseModel<List<VendorDTO>>> getAllActiveVendors() {
         List<VendorDTO> vendors = vendorService.getAllActiveVendors();
-//        return new ResponseEntity<>(vendors, HttpStatus.OK);
         return super.responseStandardizer(vendors);
     }
 }

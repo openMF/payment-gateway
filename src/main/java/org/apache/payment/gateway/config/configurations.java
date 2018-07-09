@@ -13,6 +13,7 @@ import javax.validation.Validator;
 
 @Configuration
 public class configurations {
+
     @Bean
     public Validator validator() {
         final LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
