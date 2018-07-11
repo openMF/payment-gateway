@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.payment.gateway.config.activeMq.models.PublishBody;
 import org.apache.payment.gateway.config.activeMq.models.QueueMessageModel;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -24,6 +25,8 @@ public class Utility {
 
     private static ObjectMapper objectMapper = new ObjectMapper();
     private static TypeFactory typeFactory = objectMapper.getTypeFactory();
+
+    private static RestTemplate restTemplate = new RestTemplate();
 
     public static boolean isNullOrBlank(String key){
         int strLen;
