@@ -21,7 +21,16 @@ public class ClientDTO {
     private int accountNo;
     private StatusDTO statusDTO;
     private boolean active;
-    private String activationDate;
+    private String activationDate;// Todo
     private String firstname;
+    private String lastname;
+    private String displayName;
+    private int officeId;
+    private String officeName;
+    private TimelineDTO timelineDTO;
+    private int savingsProductId;
+    private String savingsProductName;
+    private String groups;//Todo
+
 
 }
