@@ -1,10 +1,11 @@
-package org.apache.payment.gateway.dto;
+package org.apache.payment.gateway.fineract;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.payment.gateway.fineract.dtos.ClientStatusDTO;
 
 /**
  * @author Sanyam Goel created on 12/7/18
@@ -19,7 +20,7 @@ public class ClientDTO {
 
     private int id;
     private int accountNo;
-    private StatusDTO statusDTO;
+    private ClientStatusDTO statusDTO;
     private boolean active;
     private String activationDate;// Todo
     private String firstname;
