@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.payment.gateway.fineract.dtos.ClientStatusDTO;
+import org.apache.payment.gateway.fineract.dtos.ClientTimelineDTO;
 
 /**
  * @author Sanyam Goel created on 12/7/18
@@ -28,7 +29,7 @@ public class ClientDTO {
     private String displayName;
     private int officeId;
     private String officeName;
-    private TimelineDTO timelineDTO;
+    private ClientTimelineDTO timelineDTO;
     private int savingsProductId;
     private String savingsProductName;
     private String groups;//Todo
