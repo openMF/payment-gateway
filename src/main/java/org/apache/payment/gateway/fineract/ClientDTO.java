@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.apache.payment.gateway.fineract.dtos.ClientStatusDTO;
 import org.apache.payment.gateway.fineract.dtos.ClientTimelineDTO;
 
+import java.util.ArrayList;
+
 /**
  * @author Sanyam Goel created on 12/7/18
  */
@@ -32,7 +34,8 @@ public class ClientDTO {
     private ClientTimelineDTO timelineDTO;
     private int savingsProductId;
     private String savingsProductName;
-    private String groups;//Todo
+//    private String groups;//Todo
+    private ArrayList<String> groups;   // Check with mentor + community? group?
 
 
 }
