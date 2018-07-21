@@ -43,12 +43,21 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
         return criteria.list();
     }
 
+    /**
+     * Get total count of transactions
+     * @return
+     */
     public Integer getTotalCount() {
         Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
         return ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
     }
 
 
+    /**
+     * list of transactions by a vendor reference ID
+     * @param vendorRefId
+     * @return
+     */
     // Get Transaction by Vendor Reference ID
     public List<TransactionData> getTransactionByVendorReferenceId(String vendorRefId) {
 //        select * from transaction_data where vendor_reference_id = "?";
