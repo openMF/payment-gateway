@@ -1,7 +1,19 @@
 package org.apache.payment.gateway.dto.beyonic;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentObject {
 
     private long id;
@@ -22,7 +34,7 @@ public class PaymentObject {
 
     private String start_date;
 
-    //private MetaData metadata;
+    private MetaData metadata;
 
     private String state;
 

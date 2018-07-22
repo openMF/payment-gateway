@@ -1,9 +1,22 @@
 package org.apache.payment.gateway.dto.beyonic.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.payment.gateway.dto.beyonic.MetaData;
+
 /**
  * Collection Domain for Beyonic
  */
-public class CollectionRequestDomain {
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CollectionRequest {
 
     private long id;
 
@@ -19,7 +32,7 @@ public class CollectionRequestDomain {
 
     private String reason;      //opt
 
-    //private MetaData metadata;   //opt   //todo
+    private MetaData metadata;   //opt   //todo
 
     private String successMessage;  //opt
 
