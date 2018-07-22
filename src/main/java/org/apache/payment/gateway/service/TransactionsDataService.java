@@ -24,6 +24,11 @@ public class TransactionsDataService {
     @Autowired
     TransactionsDataRepository transactionsDataRepository;
 
+    /**
+     * Get transaction by a vendor referenceID
+     * @param vendorRefId
+     * @return
+     */
     @Loggable
     public List<TransactionDTO> getTransactionByVendorReferenceId(String vendorRefId) {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);

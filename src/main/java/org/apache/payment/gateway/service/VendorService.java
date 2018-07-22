@@ -23,6 +23,10 @@ public class VendorService {
     @Autowired
     VendorRepository vendorRepository;
 
+    /**
+     * to retrieve all vendors
+     * @return
+     */
     @Loggable
     public List<VendorDTO> getAllVendors() {
         List<Vendor> vendors = vendorRepository.getList(Vendor.class);
@@ -35,6 +39,11 @@ public class VendorService {
         return vendorsDTO;
     }
 
+    /**
+     * get vendor details by vendorID
+     * @param id
+     * @return
+     */
     @Loggable
     public VendorDTO getVendorById(long id) {
         Vendor vendor = vendorRepository.getById(id, Vendor.class);
@@ -47,6 +56,10 @@ public class VendorService {
         return vendorDTO;
     }
 
+    /**
+     * Get all active vendors
+     * @return
+     */
     @Loggable
     public List<VendorDTO> getAllActiveVendors() {
         List<Vendor> vendors = vendorRepository.getAllActiveVendors();

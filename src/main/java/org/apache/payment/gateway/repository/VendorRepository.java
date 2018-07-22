@@ -17,6 +17,10 @@ public class VendorRepository extends AbstractBaseRepository {
 //     db layer
 //    All Database interaction is done via repository
 
+    /**
+     * List of all Active vendors
+     * @return
+     */
     public List<Vendor> getAllActiveVendors() {
         Criteria criteria = this.getCurrentSession().createCriteria(Vendor.class);
         criteria.add(Restrictions.eq("isActive", true));
