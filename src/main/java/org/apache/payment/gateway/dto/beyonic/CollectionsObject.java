@@ -1,17 +1,14 @@
-package org.apache.payment.gateway.beyonic;
+package org.apache.payment.gateway.dto.beyonic;
 
-/**
- * Collection Domain for Beyonic
- */
-public class CollectionDomain {
+public class CollectionsObject {
 
-    private Long id;
+    private long id;
 
-    private Long remote_transaction_id;
+    private String remote_transaction_id;
 
-    private Long organization;
+    private long organization;
 
-    private Double amount;
+    private double amount;
 
     private String currency;
 
@@ -25,7 +22,7 @@ public class CollectionDomain {
 
     private String created;
 
-    private String author;
+    private long author;
 
     private String modified;
 

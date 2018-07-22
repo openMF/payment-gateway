@@ -1,7 +1,7 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.domains.Vendor;
-import org.apache.payment.gateway.dtos.response.ResponseModel;
+import org.apache.payment.gateway.dto.response.ResponseModel;
 import org.apache.payment.gateway.enums.ErrorCodes;
 import org.apache.payment.gateway.service.TestService;
 import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;

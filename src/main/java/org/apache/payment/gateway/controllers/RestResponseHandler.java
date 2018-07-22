@@ -2,12 +2,11 @@ package org.apache.payment.gateway.controllers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.payment.gateway.dtos.response.ErrorResponseModel;
-import org.apache.payment.gateway.dtos.response.ResponseModel;
+import org.apache.payment.gateway.dto.response.ErrorResponseModel;
+import org.apache.payment.gateway.dto.response.ResponseModel;
 import org.apache.payment.gateway.enums.PgExceptionType;
 import org.apache.payment.gateway.utils.exceptions.PgHibernateException;
 import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -20,10 +19,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.time.Instant;

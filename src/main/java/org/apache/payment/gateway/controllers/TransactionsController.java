@@ -1,7 +1,7 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.dto.TransactionDTO;
-import org.apache.payment.gateway.dtos.response.ResponseModel;
+import org.apache.payment.gateway.dto.response.ResponseModel;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

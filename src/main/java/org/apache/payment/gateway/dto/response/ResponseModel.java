@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.dtos.response;
+package org.apache.payment.gateway.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
