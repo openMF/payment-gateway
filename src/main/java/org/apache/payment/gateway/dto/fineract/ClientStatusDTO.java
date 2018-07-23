@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.fineract.dtos;
+package org.apache.payment.gateway.dto.fineract;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

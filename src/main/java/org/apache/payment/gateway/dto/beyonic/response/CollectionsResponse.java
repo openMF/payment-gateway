@@ -1,18 +1,18 @@
-package org.apache.payment.gateway.dto.beyonic;
+package org.apache.payment.gateway.dto.beyonic.response;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+/**
+ * Beyonic uses the term “Collections” for payments you receive (or collect) from mobile subscribers
+ */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CollectionsObject {
+@ToString
+public class CollectionsResponse {
 
     private long id;
 
@@ -40,5 +40,5 @@ public class CollectionsObject {
 
     private String updated_by;
 
-    private String collection_request;
+    private String collection_request;  // CollectionNotifyResponse
 }

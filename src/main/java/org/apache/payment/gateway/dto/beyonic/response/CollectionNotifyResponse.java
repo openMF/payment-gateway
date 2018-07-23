@@ -1,34 +1,30 @@
-package org.apache.payment.gateway.dto.beyonic.request;
+package org.apache.payment.gateway.dto.beyonic.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
 /**
- * Collection Domain for Beyonic
+ * Fineract -> money to receive from mobile subscriber
+ * Collection Request allow you to notify a customer to send funds to you
  */
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CollectionRequest {
+@ToString
+public class CollectionNotifyResponse {
 
     private long id;
 
-    private String phonenumber; //man
+    private long organisation;
 
     private double amount;  //man
 
     private String currency;    //man
 
-    private String firstName;   //opt
-
-    private String lastName;    //opt
+    private String phonenumber; //man
 
     private String reason;      //opt
 
