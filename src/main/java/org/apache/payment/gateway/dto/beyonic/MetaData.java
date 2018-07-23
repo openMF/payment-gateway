@@ -14,7 +14,6 @@ import lombok.Setter;
 public class MetaData {
 
     private long id;
-
     private String name;
 
 }

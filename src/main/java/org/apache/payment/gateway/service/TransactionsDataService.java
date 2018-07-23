@@ -19,8 +19,6 @@ import java.util.List;
 @Service
 public class TransactionsDataService {
 
-    Utility utility = new Utility();
-
     @Autowired
     TransactionsDataRepository transactionsDataRepository;
 
@@ -32,14 +30,14 @@ public class TransactionsDataService {
     @Loggable
     public List<TransactionDTO> getTransactionByVendorReferenceId(String vendorRefId) {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
-        List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
+        List<TransactionDTO> transactionDTOS = Utility.convertModelList(transactionData, TransactionDTO.class);
         return transactionDTOS;
     }
 
     @Loggable
     public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber, String clientAccoutNumber) {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber, clientAccoutNumber);
-        List<TransactionDTO> transactionDTOS = utility.convertModelList(transactionData, TransactionDTO.class);
+        List<TransactionDTO> transactionDTOS = Utility.convertModelList(transactionData, TransactionDTO.class);
 
         if(transactionDTOS == null || transactionDTOS.isEmpty()) {
             throw new PgResourceNotFoundException("Transaction List not found");
@@ -59,7 +57,7 @@ public class TransactionsDataService {
     @Loggable
     public TransactionDTO getTransactionByTransactionId(long transactionId) {
         TransactionData transactionData = transactionsDataRepository.getById(transactionId, TransactionData.class);
-        TransactionDTO transactionDTO = utility.convertModel(transactionData, TransactionDTO.class);
+        TransactionDTO transactionDTO = Utility.convertModel(transactionData, TransactionDTO.class);
 
         if(transactionDTO == null){
             throw new PgResourceNotFoundException("Transaction not found for given id " + transactionId);

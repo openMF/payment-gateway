@@ -1,7 +1,6 @@
 package org.apache.payment.gateway.utils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.payment.gateway.config.activeMq.models.PublishBody;
 import org.apache.payment.gateway.config.activeMq.models.QueueMessageModel;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -26,12 +24,10 @@ public class Utility {
     private static ObjectMapper objectMapper = new ObjectMapper();
     private static TypeFactory typeFactory = objectMapper.getTypeFactory();
 
-    private static RestTemplate restTemplate = new RestTemplate();
-
-    public static boolean isNullOrBlank(String key){
+    public static boolean isNullOrBlank(String key) {
         int strLen;
         if (key != null && (strLen = key.length()) != 0) {
-            for(int i = 0; i < strLen; ++i) {
+            for (int i = 0; i < strLen; ++i) {
                 if (!Character.isWhitespace(key.charAt(i))) {
                     return false;
                 }
@@ -74,32 +70,32 @@ public class Utility {
         }
     }
 
-    public static Long getLongValue(String str){
-        try{
+    public static Long getLongValue(String str) {
+        try {
             return new Long(str);
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Error Occurred while converting String to Long value - " + str, e);
         }
         return 0L;
     }
 
-    public static boolean getBooleanValue(String str){
-        try{
+    public static boolean getBooleanValue(String str) {
+        try {
             return Boolean.valueOf(str);
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.error("Error occurred while converting String to boolean - " + str, e);
         }
         return false;
     }
 
     public static boolean isNonEmpty(Collection<?> collection) {
-        return (collection!=null && !collection.isEmpty());
+        return (collection != null && !collection.isEmpty());
     }
 
     public static QueueMessageModel convertToQueueMessageModel(PublishBody publishBody) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        QueueMessageModel model = (QueueMessageModel)objectMapper.readValue(publishBody.getPayload(), QueueMessageModel.class);
+        QueueMessageModel model = (QueueMessageModel) objectMapper.readValue(publishBody.getPayload(), QueueMessageModel.class);
         model.setPayload(objectToJson(model.getPayload()));
         return model;
     }

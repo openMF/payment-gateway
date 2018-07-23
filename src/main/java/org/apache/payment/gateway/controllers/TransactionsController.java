@@ -51,4 +51,14 @@ public class TransactionsController extends RestResponseHandler {
         TransactionDTO transaction = transactionsDataService.getTransactionByTransactionId(transactionId);
         return super.responseStandardizer(transaction);
     }
+
+    /**
+     * to initiate payment from mobile user
+     */
+//    @RequestMapping(method = RequestMethod.POST, value = "/transaction")
+//    public ResponseEntity<String> transaction(
+//            @ResponseBody TransactionDTO transactionDTO
+//    ) {
+//        if(transactionsDataService)
+//    }
 }
