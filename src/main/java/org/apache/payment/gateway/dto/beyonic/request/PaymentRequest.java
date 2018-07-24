@@ -1,10 +1,7 @@
 package org.apache.payment.gateway.dto.beyonic.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
 
@@ -12,7 +9,7 @@ import org.apache.payment.gateway.dto.beyonic.MetaData;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class PaymentRequest {
 
     private String phoneNumber;

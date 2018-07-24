@@ -40,5 +40,6 @@ public class CollectionsResponse {
 
     private String updated_by;
 
-    private String collection_request;  // CollectionNotifyResponse
+    private String collection_request;  // CollectionNotifyResponse // JSON String // JSON parser to class from string
+
 }

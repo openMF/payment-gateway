@@ -8,6 +8,14 @@ public class BeyonicConstants {
 
     public static final String COLLECTION_API_ENDPOINT = "https://app.beyonic.com/api/collections"; //Beyonic uses the term “Collections” for payments you receive (or collect) from mobile subscribers
 
-    public static final String API_TOKEN = "e63513815d98361033618ddfe130307ab043a145";
+    public static final String PAYMENT_API_ENDPOINT = "https://app.beyonic.com/api/payments/";
+
+    public static final String ACCOUNTS_API_ENDPOINT = "https://app.beyonic.com/api/accounts";
+
+    public static final String TRANSACTIONS_API_ENDPOINT = "https://app.beyonic.com/api/transactions";
+
+    public static final String CONTACTS_API_ENDPOINT = "https://app.beyonic.com/api/contacts";
+
+    public static final String API_TOKEN = "bb38b84f38ff77abfd373c8a59761591216e2e46";
 
 }

@@ -1,22 +1,27 @@
 package org.apache.payment.gateway.dto.beyonic.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentResponse {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PaymentResponse {  //24
 
     private long id;
 
-    private long organization;
+    private String organization;
+
+    private String payment_type;
 
     private String amount;
 
@@ -24,29 +29,29 @@ public class PaymentResponse {
 
     private String account;
 
-    private String paymentType;
-
-    private MetaData metadata;
-
     private String description;
 
-    private List<String> phoneNos;
+    private ArrayList<String> phoneNos;
+
+    private String start_date;
+
+    private MetaData metadata;  //Todo
 
     private String state;
 
-    private Object lastError;
+    private String last_error;
 
-    private Object rejectedReason;
+    private String rejected_reason;
 
-    private Object rejectedBy;
+    private String rejected_time;
 
-    private Object rejectedTime;
+    private long rejected_by;   // id of user who rejected the payment
 
-    private Object cancelledReason;
+    private String cancelled_reason;
 
-    private Object cancelledBy;
+    private String cancelled_time;
 
-    private Object cancelledTime;
+    private long cancelled_by;
 
     private String created;
 
@@ -54,9 +59,10 @@ public class PaymentResponse {
 
     private String modified;
 
-    private Object updatedBy;
+    private String updated_by;
 
-    private String startDate;
+    private String remote_transaction_id;
 
-    private Object remoteTransactionId;
+    private boolean send_sms_message;
+
 }
