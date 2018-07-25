@@ -1,10 +1,7 @@
 package org.apache.payment.gateway.dto.beyonic.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class PaymentResponse {  //24
 
     private long id;

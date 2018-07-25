@@ -1,8 +1,8 @@
 package org.apache.payment.gateway.dto.beyonic.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentListResponse {
-
 
     private long count;
 
@@ -25,4 +25,7 @@ public class PaymentListResponse {
 
     private List<PaymentResponse> results;
 
+    public List<PaymentResponse> getResults() {
+        return results;
+    }
 }

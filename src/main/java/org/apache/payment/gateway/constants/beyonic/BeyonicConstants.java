@@ -8,7 +8,7 @@ public class BeyonicConstants {
 
     public static final String COLLECTION_API_ENDPOINT = "https://app.beyonic.com/api/collections"; //Beyonic uses the term “Collections” for payments you receive (or collect) from mobile subscribers
 
-    public static final String PAYMENT_API_ENDPOINT = "https://app.beyonic.com/api/payments/";
+    public static final String PAYMENT_API_ENDPOINT = "https://app.beyonic.com/api/payments";
 
     public static final String ACCOUNTS_API_ENDPOINT = "https://app.beyonic.com/api/accounts";
 
