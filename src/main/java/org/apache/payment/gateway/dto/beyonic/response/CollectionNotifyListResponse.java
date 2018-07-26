@@ -2,7 +2,7 @@ package org.apache.payment.gateway.dto.beyonic.response;
 
 import lombok.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Sanyam Goel created on 23/7/18
@@ -20,6 +20,6 @@ public class CollectionNotifyListResponse {
 
     private String previous;
 
-    private ArrayList<CollectionNotifyResponse> collectionNotifyResponses;
+    private List<CollectionNotifyResponse> results;
 
 }
