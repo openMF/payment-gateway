@@ -16,9 +16,4 @@ public class HttpHeaderUtil {
         headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
         return requestEntity = new HttpEntity(headers);
     }
-
-    public HttpHeaderUtil() {
-        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
-        requestEntity = new HttpEntity(headers);
-    }
 }

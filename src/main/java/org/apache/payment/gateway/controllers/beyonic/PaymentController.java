@@ -24,27 +24,17 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-//    HttpHeaderUtil httpHeaderUtil = new HttpHeaderUtil();
-
-
     @RequestMapping(method = RequestMethod.GET, value = "/payments/{id}", produces = "application/json")
     public ResponseEntity<PaymentResponse> getPaymentById(
             @PathVariable("id") long id
     ) {
-//        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
-//        HttpEntity request = new HttpEntity(headers);
         ResponseEntity<PaymentResponse> paymentResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT + "/" + id, HttpMethod.GET, HttpHeaderUtil.getHttpEntityInstance(), PaymentResponse.class);
         return paymentResponseEntity;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/payments/", produces = "application/json")
     public ResponseEntity<PaymentListResponse> getAllPaymentsList() {
-//        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
-//        HttpEntity request = new HttpEntity(headers);
-//        PaymentListResponse paymentListResponse = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT, HttpMethod.GET, request, PaymentListResponse.class);
-//        HttpHeaderReturn();
         ResponseEntity<PaymentListResponse> paymentResponseListEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT, HttpMethod.GET, HttpHeaderUtil.getHttpEntityInstance(), PaymentListResponse.class);
-//        return new ResponseEntity<PaymentListResponse>(paymentResponseResponseEntity, HttpStatus.OK);
         return paymentResponseListEntity;
     }
 
@@ -60,7 +50,6 @@ public class PaymentController {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(transactionalUrl);
         Map<String, String> params = new HashMap<String, String>();
 //        params.put("")
-//        HttpHeaderReturn();
         ResponseEntity<PaymentResponse> paymentResponseResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT, HttpMethod.GET, HttpHeaderUtil.getHttpEntityInstance(), PaymentResponse.class);
         return paymentResponseResponseEntity;
     }
