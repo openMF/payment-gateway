@@ -3,8 +3,7 @@ package org.apache.payment.gateway.controllers.beyonic;
 import org.apache.payment.gateway.constants.beyonic.BeyonicConstants;
 import org.apache.payment.gateway.dto.beyonic.response.CollectionNotifyListResponse;
 import org.apache.payment.gateway.dto.beyonic.response.CollectionNotifyResponse;
-import org.apache.payment.gateway.dto.beyonic.response.CollectionsResponse;
-import org.apache.payment.gateway.dto.beyonic.response.PaymentResponse;
+import org.apache.payment.gateway.utils.HttpHeaderUtil;
 import org.apache.payment.gateway.utils.RestTemplateUtil;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,13 +22,15 @@ import java.util.Map;
 @RestController
 public class CollectionController {
 
-    HttpHeaders headers = new HttpHeaders();
-    HttpEntity requestEntity;
+//    private HttpHeaders headers = new HttpHeaders();
+//    private HttpEntity requestEntity;
+//
+//    private void HttpHeaderReturn() {
+//        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
+//        requestEntity = new HttpEntity(headers);
+//    }
 
-    private void HttpHeaderReturn() {
-        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
-        requestEntity = new HttpEntity(headers);
-    }
+    HttpHeaderUtil httpHeaderUtil = new HttpHeaderUtil();
 
     @RequestMapping(method = RequestMethod.GET, value = "/collection/{id}", produces = "application/json")
     public ResponseEntity<CollectionNotifyResponse> getCollectionNotificationById(
@@ -37,8 +38,9 @@ public class CollectionController {
     ) {
 //        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
 //        HttpEntity request = new HttpEntity(headers);
-        HttpHeaderReturn();
-        ResponseEntity<CollectionNotifyResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.COLLECTION_REQUEST_API_ENDPOINT + "/" + id, HttpMethod.GET, requestEntity, CollectionNotifyResponse.class);
+
+//        HttpHeaderReturn();
+        ResponseEntity<CollectionNotifyResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.COLLECTION_REQUEST_API_ENDPOINT + "/" + id, HttpMethod.GET, httpHeaderUtil.requestEntity, CollectionNotifyResponse.class);
         return collectionNotifyResponseEntity;
     }
 
@@ -46,12 +48,13 @@ public class CollectionController {
     public ResponseEntity<CollectionNotifyListResponse> getCollectionNotificationList() {
 //        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
 //        HttpEntity request = new HttpEntity(headers);
-        HttpHeaderReturn();
-        ResponseEntity<CollectionNotifyListResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.COLLECTION_REQUEST_API_ENDPOINT, HttpMethod.GET, requestEntity, CollectionNotifyListResponse.class);
+
+//        HttpHeaderReturn();
+        ResponseEntity<CollectionNotifyListResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.COLLECTION_REQUEST_API_ENDPOINT, HttpMethod.GET, httpHeaderUtil.requestEntity, CollectionNotifyListResponse.class);
         return collectionNotifyResponseEntity;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/payments/filter", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/collection/filter", produces = "application/json")
     public ResponseEntity<CollectionNotifyResponse> getPayments(
             @RequestParam(required = false, name = "amount") double amount,
             @RequestParam(required = false, name = "currency") String currency,
@@ -65,8 +68,9 @@ public class CollectionController {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(transactionalUrl);
         Map<String, String> params = new HashMap<String, String>();
 //        params.put("")
-        HttpHeaderReturn();
-        ResponseEntity<CollectionNotifyResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT, HttpMethod.GET, requestEntity, CollectionNotifyResponse.class);
+
+//        HttpHeaderReturn();
+        ResponseEntity<CollectionNotifyResponse> collectionNotifyResponseEntity = RestTemplateUtil.getRestTemplateInstance().exchange(BeyonicConstants.PAYMENT_API_ENDPOINT, HttpMethod.GET, httpHeaderUtil.requestEntity, CollectionNotifyResponse.class);
         return collectionNotifyResponseEntity;
     }
 
