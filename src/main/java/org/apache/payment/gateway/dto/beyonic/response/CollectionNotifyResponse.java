@@ -1,6 +1,7 @@
 package org.apache.payment.gateway.dto.beyonic.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
@@ -16,46 +17,67 @@ import org.apache.payment.gateway.dto.beyonic.MetaData;
 @ToString
 public class CollectionNotifyResponse {
 
+    @JsonProperty("id")
     private long id;
 
-    private long organisation;
+    @JsonProperty("organisation")
+    private long organisationId;
 
-    private double amount;  //man
+    @JsonProperty("amount")
+    private double amount;
 
-    private String currency;    //man
+    @JsonProperty("currency")
+    private String currency;
 
-    private String phonenumber; //man
+    @JsonProperty("phonenumber")
+    private String phoneNumber;
 
-    private String reason;      //opt
+    @JsonProperty("reason")
+    private String reason;
 
-    private MetaData metadata;   //opt   //todo
+    @JsonProperty("metadata")
+    private MetaData metaData;  //todo
 
-    private String success_message;  //opt
+    @JsonProperty("success_message")
+    private String successMessage;
 
-    private boolean send_instructions;   //opt
+    @JsonProperty("send_instructions")
+    private boolean sendInstructions;   // Todo to set -> default - true
 
-    private String instructions;    //opt
+    @JsonProperty("instructions")
+    private String instructions;
 
-    private String expiry_date;  //opt  //Defaults to “24 hours”. Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as “tomorrow”, “24 hours”, “2 minutes”, or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
+    @JsonProperty("expiry_date")
+    private String expiryDate;  //opt  //Defaults to “24 hours”. Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as “tomorrow”, “24 hours”, “2 minutes”, or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 
-    //private ContactInfo contact;    //todo check with mentors
+//    @JsonProperty("contact")
+//    private ContactInfo contactDetails;    //todo check with mentors
 
+    @JsonProperty("")
     private long organization;
 
-    private String created; // YYYY-MM-DDTHH:MM:SSZ UTC format
+    @JsonProperty("created")
+    private String createdDate; // YYYY-MM-DDTHH:MM:SSZ UTC format
 
-    private long author;
+    @JsonProperty("author")
+    private long authorId;
 
-    private String modified;
+    @JsonProperty("modified")
+    private String modifiedDate;
 
-    private String updated_by;
+    @JsonProperty("updated_by")
+    private String updatedByUserId;
 
-    private long collection;
+    @JsonProperty("collection")
+    private long collectionId;
 
+    @JsonProperty("status")
     private String status;
 
-    private String error_message;
+    @JsonProperty("error_message")
+    private String errorMessage;
 
-    private String error_details;
+    @JsonProperty("error_details")
+    private String errorDetails;
 
 }

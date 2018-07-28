@@ -1,10 +1,10 @@
 package org.apache.payment.gateway.dto.beyonic.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,54 +13,78 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString
-public class PaymentResponse {  //24
+public class PaymentResponse {
 
+    @JsonProperty("id")
     private long id;
 
-    private String organization;
+    @JsonProperty("organization")
+    private String organizationId;
 
-    private String payment_type;
+    @JsonProperty("payment_type")
+    private String paymentType; // money or airtime
 
+    @JsonProperty("amount")
     private String amount;
 
+    @JsonProperty("currency")
     private String currency;
 
-    private String account;
+    @JsonProperty("account")
+    private String accountId;
 
+    @JsonProperty("description")
     private String description;
 
-    private ArrayList<String> phoneNos;
+    @JsonProperty("phone_nos")
+    private List<String> phoneNos;
 
-    private String start_date;
+    @JsonProperty("start_date")
+    private String startDate;
 
-    private MetaData metadata;  //Todo
+    @JsonProperty("metadata")
+    private MetaData metaData;  //Todo
 
+    @JsonProperty("state")
     private String state;
 
-    private String last_error;
+    @JsonProperty("last_error")
+    private String lastError;
 
-    private String rejected_reason;
+    @JsonProperty("rejected_reason")
+    private String rejectedReason;
 
-    private String rejected_time;
+    @JsonProperty("rejected_time")
+    private String rejectedTime;
 
-    private long rejected_by;   // id of user who rejected the payment
+    @JsonProperty("rejected_by")
+    private long rejectedByUserId;   // id of user who rejected the payment
 
-    private String cancelled_reason;
+    @JsonProperty("cancelled_reason")
+    private String cancelledReason;
 
-    private String cancelled_time;
+    @JsonProperty("cancelled_time")
+    private String cancelledTime;
 
-    private long cancelled_by;
+    @JsonProperty("cancelled_by")
+    private long cancelledByUserId;
 
+    @JsonProperty("created")
     private String created;
 
-    private long author;
+    @JsonProperty("author")
+    private long authorId;
 
-    private String modified;
+    @JsonProperty("modified")
+    private String lastModifiedTime;
 
-    private String updated_by;
+    @JsonProperty("updated_by")
+    private String updatedByUserId;
 
-    private String remote_transaction_id;
+    @JsonProperty("remote_transaction_id")
+    private String remoteTransactionId;
 
-    private boolean send_sms_message;
+    @JsonProperty("send_sms_message")
+    private boolean sendSmsMessage;
 
 }

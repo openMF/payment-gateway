@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.dto.beyonic;
+package org.apache.payment.gateway.dto.beyonic.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,18 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.payment.gateway.dto.beyonic.Hook;
 
+/**
+ * @author Sanyam Goel created on 29/7/18
+ */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MetaData {
+public class WebHookPaymentStatusResponse {
 
-    @JsonProperty("id")
-    private long id;
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("hook")
+    private Hook hook;
 
+    @JsonProperty("data")
+    private PaymentResponse data;
 }

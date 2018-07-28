@@ -56,10 +56,10 @@ public class TransactionsController extends RestResponseHandler {
     /**
      * to initiate payment from mobile user
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/transaction")
-    public ResponseEntity<TransactionDTO> transaction(
-            @RequestBody TransactionRequest transactionRequest
-            ) {
-
-    }
+//    @RequestMapping(method = RequestMethod.POST, value = "/transaction")
+//    public ResponseEntity<TransactionDTO> transaction(
+//            @RequestBody TransactionRequest transactionRequest
+//            ) {
+//
+//    }
 }

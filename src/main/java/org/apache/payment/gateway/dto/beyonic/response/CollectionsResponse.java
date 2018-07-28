@@ -2,6 +2,7 @@ package org.apache.payment.gateway.dto.beyonic.response;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 /**
@@ -14,32 +15,46 @@ import lombok.*;
 @ToString
 public class CollectionsResponse {
 
+    @JsonProperty("id")
     private long id;
 
-    private String remote_transaction_id;
+    @JsonProperty("remote_transaction_id")
+    private String remoteTransactionId;
 
-    private long organization;
+    @JsonProperty("organization")
+    private long organizationId;
 
+    @JsonProperty("amount")
     private double amount;
 
+    @JsonProperty("currency")
     private String currency;
 
-    private String phonenumber;
+    @JsonProperty("phonenumber")
+    private String phoneNumber;
 
-    private String payment_date;
+    @JsonProperty("payment_date")
+    private String paymentDate;
 
+    @JsonProperty("reference")
     private String reference;
 
+    @JsonProperty("status")
     private String status;
 
-    private String created;
+    @JsonProperty("created")
+    private String createdDate;
 
+    @JsonProperty("author")
     private long author;
 
-    private String modified;
+    @JsonProperty("modified")
+    private String modifiedDate;
 
-    private String updated_by;
+    @JsonProperty("updated_by")
+    private String updatedByUserId;
 
-    private String collection_request;  // CollectionNotifyResponse // JSON String // JSON parser to class from string
+    @JsonProperty("collection_request")
+    private String collectionRequest;  // CollectionNotifyResponse // JSON String // JSON parser to class from string
 
 }

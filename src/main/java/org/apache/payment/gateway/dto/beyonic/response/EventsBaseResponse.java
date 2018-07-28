@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EventsResponse {
+public class EventsBaseResponse {
 
     @JsonProperty(value = "id")
     private long id;
@@ -21,9 +21,6 @@ public class EventsResponse {
 
     @JsonProperty(value = "type")
     private String eventType;
-
-    @JsonProperty(value = "data")
-    private Object objectData;
 
     @JsonProperty(value = "created")
     private String created;

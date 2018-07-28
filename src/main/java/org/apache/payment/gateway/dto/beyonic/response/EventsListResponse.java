@@ -26,5 +26,5 @@ public class EventsListResponse {
     private String previous;
 
     @JsonProperty(value = "results")
-    private List<EventsResponse> results;
+    private List<EventsBaseResponse> results;
 }
