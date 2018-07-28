@@ -3,11 +3,10 @@ package org.apache.payment.gateway.dto.beyonic.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Sanyam Goel created on 23/7/18
+ * @author Sanyam Goel created on 28/7/18
  */
 
 @Getter
@@ -15,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CollectionsListResponse {
+public class EventsListResponse {
 
     @JsonProperty(value = "count")
     private long count;
@@ -27,6 +26,5 @@ public class CollectionsListResponse {
     private String previous;
 
     @JsonProperty(value = "results")
-    private List<CollectionsResponse> collectionNotifyResponses;
-
+    private List<EventsResponse> results;
 }

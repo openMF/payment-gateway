@@ -4,6 +4,7 @@ import org.apache.payment.gateway.config.aspect.Loggable;
 import org.apache.payment.gateway.domains.TransactionData;
 import org.apache.payment.gateway.dto.TransactionDTO;
 import org.apache.payment.gateway.dto.TransactionsResponseDTO;
+import org.apache.payment.gateway.dto.request.TransactionRequest;
 import org.apache.payment.gateway.repository.TransactionsDataRepository;
 import org.apache.payment.gateway.utils.Utility;
 import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;
@@ -64,5 +65,9 @@ public class TransactionsDataService {
         }
 
         return transactionDTO;
+    }
+
+    public void postTransactionDetails(TransactionRequest transactionRequest) {
+        transactionsDataRepository.postTransactionDetailsByUser(transactionRequest);
     }
 }

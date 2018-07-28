@@ -2,6 +2,7 @@ package org.apache.payment.gateway.repository;
 
 import org.apache.payment.gateway.config.hibernate.AbstractBaseRepository;
 import org.apache.payment.gateway.domains.TransactionData;
+import org.apache.payment.gateway.dto.request.TransactionRequest;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
@@ -64,6 +65,11 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
         Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
         criteria.add(Restrictions.eq("vendorReferenceId", vendorRefId));
         return criteria.list();
+    }
+
+    //to insert transaction recieved from application
+    public void postTransactionDetailsByUser(TransactionRequest transactionRequest) {
+        // criteria to insert
     }
 
 }
