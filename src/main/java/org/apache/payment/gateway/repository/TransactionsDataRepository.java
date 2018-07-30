@@ -28,15 +28,15 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
         Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
         criteria.add(Restrictions.gt("transactionId", nextTransactionId));
 
-        if(vendorIdList != null && !vendorIdList.isEmpty()){
+        if (vendorIdList != null && !vendorIdList.isEmpty()) {
             criteria.add(Restrictions.in("vendorId", vendorIdList));
         }
 
-        if(clientPhoneNumber != null) {
+        if (clientPhoneNumber != null) {
             criteria.add(Restrictions.eq("clientPhoneNumber", clientPhoneNumber));
         }
 
-        if(clientAccountNumber != null) {
+        if (clientAccountNumber != null) {
             criteria.add(Restrictions.eq("clientAccountNumber", clientAccountNumber));
         }
 
@@ -46,16 +46,18 @@ public class TransactionsDataRepository extends AbstractBaseRepository {
 
     /**
      * Get total count of transactions
+     *
      * @return
      */
     public Integer getTotalCount() {
         Criteria criteria = this.getCurrentSession().createCriteria(TransactionData.class);
-        return ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+        return ((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
     }
 
 
     /**
      * list of transactions by a vendor reference ID
+     *
      * @param vendorRefId
      * @return
      */

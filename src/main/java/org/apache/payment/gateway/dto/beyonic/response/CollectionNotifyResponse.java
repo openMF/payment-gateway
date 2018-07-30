@@ -21,7 +21,7 @@ public class CollectionNotifyResponse {
     private long id;
 
     @JsonProperty("organisation")
-    private long organisationId;
+    private String organisation;
 
     @JsonProperty("amount")
     private double amount;
@@ -52,9 +52,6 @@ public class CollectionNotifyResponse {
 
 //    @JsonProperty("contact")
 //    private ContactInfo contactDetails;    //todo check with mentors
-
-    @JsonProperty("")
-    private long organization;
 
     @JsonProperty("created")
     private String createdDate; // YYYY-MM-DDTHH:MM:SSZ UTC format

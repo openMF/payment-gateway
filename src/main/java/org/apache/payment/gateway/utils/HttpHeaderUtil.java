@@ -10,10 +10,9 @@ import org.springframework.http.HttpHeaders;
 public class HttpHeaderUtil {
 
     private static HttpHeaders headers = new HttpHeaders();
-    private static HttpEntity requestEntity;
 
     public static HttpEntity getHttpEntityInstance() {
         headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
-        return requestEntity = new HttpEntity(headers);
+        return new HttpEntity(headers);
     }
 }

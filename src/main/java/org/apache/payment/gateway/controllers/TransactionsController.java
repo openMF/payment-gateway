@@ -3,6 +3,7 @@ package org.apache.payment.gateway.controllers;
 import org.apache.payment.gateway.dto.TransactionDTO;
 import org.apache.payment.gateway.dto.request.TransactionRequest;
 import org.apache.payment.gateway.dto.response.ResponseModel;
+import org.apache.payment.gateway.dto.response.TransactionResponse;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,10 +57,11 @@ public class TransactionsController extends RestResponseHandler {
     /**
      * to initiate payment from mobile user
      */
-//    @RequestMapping(method = RequestMethod.POST, value = "/transaction")
-//    public ResponseEntity<TransactionDTO> transaction(
-//            @RequestBody TransactionRequest transactionRequest
-//            ) {
-//
-//    }
+    @RequestMapping(method = RequestMethod.POST, value = "/create-transaction")
+    public ResponseEntity<ResponseModel<TransactionResponse>> transactionByUser(
+            @RequestBody TransactionRequest transactionRequest
+    ) {
+        TransactionResponse transactionResponse = transactionsDataService.postTransactionDetails(transactionRequest);
+        return super.responseStandardizer(transactionResponse);
+    }
 }
