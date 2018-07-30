@@ -96,6 +96,7 @@ public class TransactionsDataService {
         transactionData.setFineractClientId(transactionRequest.getClientId());
         transactionData.setVendorId(transactionRequest.getVendorId());
 //        transactionData.setVendorMetaData(transactionRequest.getMetaData());
+        transactionData.setVendorReferenceId(String.valueOf(collectionNotifyResponse.getId()));
         transactionData.setAccountType("SAVINGS");
 
         transactionsDataRepository.create(transactionData);

@@ -30,7 +30,7 @@ public class TransactionData extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long transactionId;
 
-    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    @Column(name = "vendor_id")
     private long vendorId;
 
     @Column(name = "client_first_name")
@@ -88,9 +88,9 @@ public class TransactionData extends BaseEntity {
     private long fineractClientId;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
-    private Vendor vendor;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = )
+//    @JoinColumn(name = "vendor_id", referencedColumnName = "vendor_id", nullable = false)
+//    private Vendor vendor;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "error_info_id", referencedColumnName = "error_info_id", nullable = false)
