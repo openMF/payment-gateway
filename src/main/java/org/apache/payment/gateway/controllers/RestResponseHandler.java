@@ -37,14 +37,14 @@ public class RestResponseHandler {
 
     private static Logger logger = LogManager.getLogger(RestResponseHandler.class);
 
-    RestResponseHandler(){
+    RestResponseHandler() {
 
     }
 
     /*
-    * functions which wrap response object into payment-gateway standard response.
-    * 
-    * */
+     * functions which wrap response object into payment-gateway standard response.
+     *
+     * */
     public <T> ResponseEntity<ResponseModel<T>> responseStandardizer(T object, HttpStatus httpStatus) {
         ResponseModel<T> responseModel = new ResponseModel(object, httpStatus.value(), null);
         return new ResponseEntity(responseModel, httpStatus);
@@ -55,16 +55,16 @@ public class RestResponseHandler {
     }
 
     /*
-    * functions for handling spring exceptions
-    * 
-    * */
+     * functions for handling spring exceptions
+     *
+     * */
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({NoHandlerFoundException.class})
     @ResponseBody
     public ResponseModel<Object> NotFoundHandler(NoHandlerFoundException ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.NoHandlerFoundException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors("No handler found for " + ex.getHttpMethod() + " " + ex.getRequestURL()));
-        return new ResponseModel((Object)null, HttpStatus.NOT_FOUND.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.NoHandlerFoundException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors("No handler found for " + ex.getHttpMethod() + " " + ex.getRequestURL()));
+        return new ResponseModel((Object) null, HttpStatus.NOT_FOUND.value(), error);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -72,8 +72,8 @@ public class RestResponseHandler {
     @ResponseBody
     public ResponseModel<Object> ExceptionHandler(Exception ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.Exception, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
-        return new ResponseModel((Object)null, HttpStatus.INTERNAL_SERVER_ERROR.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.Exception, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
+        return new ResponseModel((Object) null, HttpStatus.INTERNAL_SERVER_ERROR.value(), error);
     }
 
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
@@ -84,8 +84,8 @@ public class RestResponseHandler {
         StringBuilder builder = new StringBuilder();
         builder.append(ex.getMethod());
         builder.append(" method is not supported for this request endpoint");
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpRequestMethodNotSupportedException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(builder.toString()));
-        return new ResponseModel((Object)null, HttpStatus.METHOD_NOT_ALLOWED.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpRequestMethodNotSupportedException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(builder.toString()));
+        return new ResponseModel((Object) null, HttpStatus.METHOD_NOT_ALLOWED.value(), error);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -95,13 +95,13 @@ public class RestResponseHandler {
         logger.error("Exception : ", ex);
         ArrayList<String> errors = new ArrayList();
         Iterator var5 = ex.getBindingResult().getAllErrors().iterator();
-        while(var5.hasNext()) {
-            ObjectError error = (ObjectError)var5.next();
+        while (var5.hasNext()) {
+            ObjectError error = (ObjectError) var5.next();
             errors.add(error.getObjectName() + ": " + error.getDefaultMessage());
         }
 
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.MethodArgumentNotValidException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), errors);
-        return new ResponseModel((Object)null, HttpStatus.BAD_REQUEST.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.MethodArgumentNotValidException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), errors);
+        return new ResponseModel((Object) null, HttpStatus.BAD_REQUEST.value(), error);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -109,10 +109,10 @@ public class RestResponseHandler {
     @ResponseBody
     public ResponseModel<Object> MissingServletRequestParameterExceptionHandler(MissingServletRequestParameterException ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.MissingServletRequestParameterException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getParameterName() + " parameter is missing"));
-        return new ResponseModel((Object)null, HttpStatus.BAD_REQUEST.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.MissingServletRequestParameterException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getParameterName() + " parameter is missing"));
+        return new ResponseModel((Object) null, HttpStatus.BAD_REQUEST.value(), error);
     }
-    
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ConstraintViolationException.class})
     @ResponseBody
@@ -121,13 +121,13 @@ public class RestResponseHandler {
         ArrayList<String> errors = new ArrayList();
         Iterator var5 = ex.getConstraintViolations().iterator();
 
-        while(var5.hasNext()) {
-            ConstraintViolation<?> violation = (ConstraintViolation)var5.next();
+        while (var5.hasNext()) {
+            ConstraintViolation<?> violation = (ConstraintViolation) var5.next();
             errors.add(violation.getRootBeanClass().getName() + " " + violation.getPropertyPath() + ": " + violation.getMessage());
         }
 
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.ConstraintViolationException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), errors);
-        return new ResponseModel((Object)null, HttpStatus.BAD_REQUEST.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.ConstraintViolationException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), errors);
+        return new ResponseModel((Object) null, HttpStatus.BAD_REQUEST.value(), error);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -135,8 +135,8 @@ public class RestResponseHandler {
     @ResponseBody
     public ResponseModel<Object> HttpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpMessageNotReadableException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
-        return new ResponseModel((Object)null, HttpStatus.BAD_REQUEST.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpMessageNotReadableException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
+        return new ResponseModel((Object) null, HttpStatus.BAD_REQUEST.value(), error);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -147,21 +147,21 @@ public class RestResponseHandler {
         StringBuilder builder = new StringBuilder();
         builder.append(ex.getContentType());
         builder.append(" media type is not supported");
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpMediaTypeNotSupportedException, (String)null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(builder.toString()));
-        return new ResponseModel((Object)null, HttpStatus.BAD_REQUEST.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.HttpMediaTypeNotSupportedException, (String) null, ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(builder.toString()));
+        return new ResponseModel((Object) null, HttpStatus.BAD_REQUEST.value(), error);
     }
-    
+
     /*
-    * functions for handling payment-gateway custom exceptions.
-    * 
-    * */
+     * functions for handling payment-gateway custom exceptions.
+     *
+     * */
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({PgResourceNotFoundException.class})
     @ResponseBody
     public ResponseModel<Object> resourceNotFoundExceptionHandler(PgResourceNotFoundException ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.PgResourceNotFoundException, (String)ex.getErrorCode(), ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
-        return new ResponseModel((Object)null, HttpStatus.NOT_FOUND.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.PgResourceNotFoundException, (String) ex.getErrorCode(), ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
+        return new ResponseModel((Object) null, HttpStatus.NOT_FOUND.value(), error);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -169,20 +169,20 @@ public class RestResponseHandler {
     @ResponseBody
     public ResponseModel<Object> hibernateExceptionHandler(PgHibernateException ex) {
         logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.PgResourceNotFoundException, (String)ex.getErrorCode(), ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
-        return new ResponseModel((Object)null, HttpStatus.INTERNAL_SERVER_ERROR.value(), error);
+        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.PgResourceNotFoundException, (String) ex.getErrorCode(), ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
+        return new ResponseModel((Object) null, HttpStatus.INTERNAL_SERVER_ERROR.value(), error);
     }
 
 
     /*
-    * Utility function specific to this class
-    * 
-    * */
+     * Utility function specific to this class
+     *
+     * */
     private ArrayList<String> getErrors(String... errors) {
         ArrayList<String> errorMessages = new ArrayList();
         Collections.addAll(errorMessages, errors);
         return errorMessages;
     }
-    
+
 }
 

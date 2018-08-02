@@ -26,7 +26,7 @@ public class VendorRequestLog extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "vendor_id", insertable = false, updatable = false, nullable = false)
+    @Column(name = "vendor_id", insertable = false, updatable = false)
     private long vendorId;
 
     @Column(name = "vendor_reference_id", nullable = false)

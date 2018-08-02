@@ -23,6 +23,6 @@ public class PaymentGateway {
     public static void main(String[] args) {
         logger.info("Starting payment-gateway application");
         SpringApplication.run(PaymentGateway.class, args);
-        logger.info("Payment-gateway application started");
+        logger.info("PaymentRepository-gateway application started");
     }
 }

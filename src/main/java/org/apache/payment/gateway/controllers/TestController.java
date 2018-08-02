@@ -26,7 +26,7 @@ public class TestController extends RestResponseHandler {
     @RequestMapping(method = RequestMethod.GET, value = "/test", produces = "application/json")
     public ResponseEntity<Object> getTestEndpoint(
             @RequestParam(required = false) String testParam
-    ){
+    ) {
         throw new PgResourceNotFoundException(ErrorCodes.ACTIVEMQ_001.getDescription(), ErrorCodes.ACTIVEMQ_001.getCode());
 //        return new ResponseEntity<>(testService.testServiceMethod(testParam), HttpStatus.OK);
     }
@@ -34,14 +34,14 @@ public class TestController extends RestResponseHandler {
     @RequestMapping(method = RequestMethod.GET, value = "/vendor", produces = "application/json")
     public ResponseEntity<ResponseModel<Vendor>> setVendor(
             @RequestParam(required = false) String vendorName
-    ){
+    ) {
         return super.responseStandardizer(testService.setVendor(vendorName));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/vendor", produces = "application/json")
     public ResponseEntity<Object> getVendor(
             @RequestParam(required = false) String vendorName
-    ){
+    ) {
         return new ResponseEntity<>(testService.getVendor(vendorName), HttpStatus.OK);
     }
 

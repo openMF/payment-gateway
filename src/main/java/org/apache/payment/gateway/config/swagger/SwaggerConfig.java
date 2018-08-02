@@ -25,7 +25,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Payment-Gateway Service")
+                .title("PaymentRepository-Gateway Service")
                 .description("This service handles payment integrations with third party vendors")
                 .version("0.0.1")
                 .license("Mozilla Public License 2.0")

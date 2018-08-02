@@ -1,7 +1,9 @@
 package org.apache.payment.gateway.controllers;
 
 import org.apache.payment.gateway.dto.TransactionDTO;
+import org.apache.payment.gateway.dto.request.TransactionRequest;
 import org.apache.payment.gateway.dto.response.ResponseModel;
+import org.apache.payment.gateway.dto.response.TransactionResponse;
 import org.apache.payment.gateway.service.TransactionsDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,14 +36,14 @@ public class TransactionsController extends RestResponseHandler {
         return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber, AccountNumber));
     }
 
-    @ApiIgnore
+    /*@ApiIgnore
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
     public ResponseEntity<ResponseModel<List<TransactionDTO>>> getTransactionByVendorReferenceId(
             @PathVariable("vendorId") String vendorRefId
     ) {
         List<TransactionDTO> transactionDTOS = transactionsDataService.getTransactionByVendorReferenceId(vendorRefId);
         return super.responseStandardizer(transactionDTOS);
-    }
+    }*/
 
     // get transaction by transaction id
     @RequestMapping(method = RequestMethod.GET, value = "/transaction/{transactionId}", produces = "application/json")
@@ -50,5 +52,16 @@ public class TransactionsController extends RestResponseHandler {
     ) {
         TransactionDTO transaction = transactionsDataService.getTransactionByTransactionId(transactionId);
         return super.responseStandardizer(transaction);
+    }
+
+    /**
+     * to initiate payment from mobile user
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/create-transaction")
+    public ResponseEntity<ResponseModel<TransactionResponse>> transactionByUser(
+            @RequestBody TransactionRequest transactionRequest
+    ) {
+        TransactionResponse transactionResponse = transactionsDataService.postTransactionDetails(transactionRequest);
+        return super.responseStandardizer(transactionResponse);
     }
 }
