@@ -7,11 +7,13 @@ import org.apache.payment.gateway.service.beyonic.WebHookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author Sanyam Goel created on 28/7/18
  */
 
+@ApiIgnore
 @RequestMapping(value = "/payment-gateway/api/v1")
 @RestController
 public class WebHookController {

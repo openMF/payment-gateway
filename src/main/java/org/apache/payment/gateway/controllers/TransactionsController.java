@@ -36,7 +36,7 @@ public class TransactionsController extends RestResponseHandler {
         return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber, AccountNumber));
     }
 
-    /*@ApiIgnore
+    /*
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
     public ResponseEntity<ResponseModel<List<TransactionDTO>>> getTransactionByVendorReferenceId(
             @PathVariable("vendorId") String vendorRefId
