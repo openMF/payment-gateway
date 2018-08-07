@@ -44,6 +44,17 @@ public class TransactionsDataService {
         return transactionDTOS;
     }
 
+    /**
+     * Get Transactions
+     *
+     * @param nextTransactionId
+     * @param size
+     * @param isTotalCountRequired
+     * @param vendorIdList
+     * @param clientPhoneNumber
+     * @param clientAccoutNumber
+     * @return
+     */
     @Loggable
     public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber, String clientAccoutNumber) {
         List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber, clientAccoutNumber);
@@ -76,6 +87,11 @@ public class TransactionsDataService {
         return transactionDTO;
     }
 
+    /**
+     * Create transaction from user
+     * @param transactionRequest
+     * @return
+     */
     @Transactional
     @Loggable
     public TransactionResponse postTransactionDetails(TransactionRequest transactionRequest) {

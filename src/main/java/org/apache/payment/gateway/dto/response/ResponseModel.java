@@ -12,7 +12,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class ResponseModel<T> {
+
     private T data;
+
     private int statusCode;
+
     private ErrorResponseModel error;
 }
