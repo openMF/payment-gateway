@@ -1,6 +1,6 @@
 # Project Title
 
-One Paragraph of project description goes here
+Payment Gateway Service
 
 ## Getting Started
 
@@ -12,6 +12,7 @@ What things you need to install the software and how to install them
 
 ```
 Give examples
+Maven: mvn clean install
 ```
 
 ### Installing
