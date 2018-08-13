@@ -143,3 +143,22 @@ See also the list of [contributors](https://github.com/your/project/contributors
 ## License
 
 This project is licensed under the Mozilla Public License 2.0 License - see the [LICENSE.md](https://github.com/openMF/payment-gateway/blob/master/LICENSE) file for details
+
+## Screenshots
+
+1. To create payment or in case of LOAN DISBURSAL </br>
+   > - <img src="https://imgur.com/UEaIb56.jpg" />
+   > - <img src="https://imgur.com/nf1OAyZ.jpg" />
+   > - <img src="https://imgur.com/lLo2UKD.jpg" />
+   > - <img src="https://imgur.com/5WO54bV.jpg" />
+   </br>
+   </br>
+2. To create payment or in case of LOAN REPAYMENT </br>
+   > - <img src="https://imgur.com/5l7u02d.jpg" />
+   > - <img src="https://imgur.com/NEkHZtQ.jpg" />
+   > - <img src="https://imgur.com/yvtoBQf.jpg" />
+   > - <img src="https://imgur.com/lX3TJ2z.jpg" />
+   > - <img src="https://imgur.com/vkU9lSF.jpg" />
+   > - <img src="https://imgur.com/4k1yeMt.jpg" />
+   > - <img src="https://imgur.com/5h9mGSH.jpg" />
+   > - <img src="https://imgur.com/XTS1ZdU.jpg" />
