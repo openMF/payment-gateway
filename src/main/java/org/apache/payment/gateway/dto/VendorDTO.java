@@ -18,15 +18,25 @@ import lombok.Setter;
 public class VendorDTO {
 
     private long vendorId;
+
     private String vendorName;
+
     private boolean isActive;
+
     private String vendorApiKey;
+
     private String vendorMeta;
+
     private String callBackEndpoint;
+
     private String vendorAuthenticationKey;
+
     private String queueAuthenticationKey;
+
     private String currency;    // CurrencyType
+
     private long createdAt;
+
     private long updatedAt;
 
 }

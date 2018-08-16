@@ -18,7 +18,6 @@ import org.apache.payment.gateway.dto.beyonic.Hook;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WebHookPaymentStatusResponse {
 
-
     @JsonProperty("hook")
     private Hook hook;
 

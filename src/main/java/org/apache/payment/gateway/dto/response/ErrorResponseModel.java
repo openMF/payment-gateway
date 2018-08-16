@@ -13,9 +13,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ErrorResponseModel {
+
     private PgExceptionType exceptionType;
+
     private String errorCode;
+
     private String errorMessage;
+
     private long time;
+
     private List<String> errorCause;
 }

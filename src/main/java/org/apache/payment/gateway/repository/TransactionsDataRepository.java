@@ -18,6 +18,15 @@ import java.util.List;
 @Repository
 public class TransactionsDataRepository extends AbstractBaseRepository {
 
+    /**
+     * get list of transactions from database
+     * @param nextTransactionId
+     * @param limit
+     * @param vendorIdList
+     * @param clientPhoneNumber
+     * @param clientAccountNumber
+     * @return
+     */
     public List<TransactionData> getTransactionsFromDb(long nextTransactionId, int limit, List<Long> vendorIdList, String clientPhoneNumber, String clientAccountNumber) {
         /*
           select COUNT(*) From Transaction_data

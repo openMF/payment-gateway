@@ -36,7 +36,7 @@ public class TransactionsController extends RestResponseHandler {
         return super.responseStandardizer(transactionsDataService.getTransactions(nextTransactionId, size, isTotalCountRequired, vendorIdList, phoneNumber, AccountNumber));
     }
 
-    /*@ApiIgnore
+    /*
     @RequestMapping(method = RequestMethod.GET, value = "/transaction-vendor-id/{vendorRefId}", produces = "application/json")
     public ResponseEntity<ResponseModel<List<TransactionDTO>>> getTransactionByVendorReferenceId(
             @PathVariable("vendorId") String vendorRefId
@@ -63,5 +63,13 @@ public class TransactionsController extends RestResponseHandler {
     ) {
         TransactionResponse transactionResponse = transactionsDataService.postTransactionDetails(transactionRequest);
         return super.responseStandardizer(transactionResponse);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/loan-disbursal", produces = "application/json")
+    public ResponseEntity<ResponseModel<TransactionResponse>> transactionByBank(
+            @RequestBody TransactionRequest transactionRequest
+    ) {
+
+        return null;
     }
 }

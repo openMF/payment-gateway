@@ -16,7 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class TransactionsResponseDTO {
+
     private List<TransactionDTO> transactionList;
+
     private long nextTransactionId;
+
     private Integer totalCount;
 }

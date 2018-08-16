@@ -19,6 +19,11 @@ import org.springframework.util.MultiValueMap;
 @Component
 public class BeyonicService {
 
+    /**
+     * create collection request and insert data into database
+     * @param transactionRequest
+     * @return
+     */
     public CollectionNotifyResponse createCollectionRequest(TransactionRequest transactionRequest){
         CollectionNotifyRequest collectionNotifyRequest = this.prepareCollectionNotifyRequest(transactionRequest);
         try {
@@ -33,6 +38,11 @@ public class BeyonicService {
         }
     }
 
+    /**
+     *
+     * @param transactionRequest
+     * @return
+     */
     private CollectionNotifyRequest prepareCollectionNotifyRequest(TransactionRequest transactionRequest){
         CollectionNotifyRequest collectionNotifyRequest = new CollectionNotifyRequest();
         collectionNotifyRequest.setPhoneNumber(transactionRequest.getPhoneNumber());

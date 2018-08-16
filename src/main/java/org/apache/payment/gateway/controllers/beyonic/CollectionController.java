@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * @author Sanyam Goel created on 25/7/18
  */
+@ApiIgnore
 @RequestMapping(value = "/payment-gateway/api/v1/beyonic/")
 @RestController
 public class CollectionController {
