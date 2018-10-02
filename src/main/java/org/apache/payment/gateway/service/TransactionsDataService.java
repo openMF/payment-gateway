@@ -1,5 +1,6 @@
 package org.apache.payment.gateway.service;
 
+import com.google.gson.Gson;
 import org.apache.payment.gateway.config.aspect.Loggable;
 import org.apache.payment.gateway.constants.TransactionStatus;
 import org.apache.payment.gateway.domains.TransactionData;
@@ -16,7 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.apache.payment.gateway.activeMQ.config.OutboundChannelHelper;
+import org.apache.payment.gateway.activeMQ.util.PaymentGatewayConstants;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sanyam Goel created on 15/6/18
@@ -29,6 +35,9 @@ public class TransactionsDataService {
     TransactionsDataRepository transactionsDataRepository;
 
     @Autowired
+    OutboundChannelHelper outboundChannelHelper;
+
+    @Autowired
     BeyonicService beyonicService;
 
     /**
@@ -39,7 +48,7 @@ public class TransactionsDataService {
      */
     @Loggable
     public List<TransactionDTO> getTransactionByVendorReferenceId(String vendorRefId) {
-        List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId(vendorRefId);
+        List<TransactionData> transactionData = transactionsDataRepository.getTransactionByVendorReferenceId((long) Integer.parseInt(vendorRefId));
         List<TransactionDTO> transactionDTOS = Utility.convertModelList(transactionData, TransactionDTO.class);
         return transactionDTOS;
     }
@@ -57,27 +66,27 @@ public class TransactionsDataService {
      */
     @Loggable
     public TransactionsResponseDTO getTransactions(long nextTransactionId, int size, boolean isTotalCountRequired, List<Long> vendorIdList, String clientPhoneNumber, String clientAccoutNumber) {
-        List<TransactionData> transactionData = transactionsDataRepository.getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber, clientAccoutNumber);
+        List<TransactionData> transactionData = transactionsDataRepository.findAll();  //getTransactionsFromDb(nextTransactionId, size, vendorIdList, clientPhoneNumber, clientAccoutNumber);
         List<TransactionDTO> transactionDTOS = Utility.convertModelList(transactionData, TransactionDTO.class);
 
         if (transactionDTOS == null || transactionDTOS.isEmpty()) {
             throw new PgResourceNotFoundException("Transaction List not found");
         }
 
-        Integer totalCount = null;
+        long totalCount = 0;
         if (isTotalCountRequired) {
-            totalCount = transactionsDataRepository.getTotalCount();
+            totalCount = transactionsDataRepository.count();
         }
 
         long nextComputedTransactionId = -1;
         int transactionListSize = transactionDTOS.size();
         nextComputedTransactionId = transactionListSize < size ? -1 : transactionDTOS.get(transactionListSize - 1).getTransactionId();
-        return new TransactionsResponseDTO(transactionDTOS, nextComputedTransactionId, totalCount);
+        return new TransactionsResponseDTO(transactionDTOS, nextComputedTransactionId, (int) totalCount);
     }
 
     @Loggable
     public TransactionDTO getTransactionByTransactionId(long transactionId) {
-        TransactionData transactionData = transactionsDataRepository.getById(transactionId, TransactionData.class);
+        TransactionData transactionData = transactionsDataRepository.findOne(transactionId);
         TransactionDTO transactionDTO = Utility.convertModel(transactionData, TransactionDTO.class);
 
         if (transactionDTO == null) {
@@ -101,7 +110,22 @@ public class TransactionsDataService {
 
         CollectionNotifyResponse collectionNotifyResponse = beyonicService.createCollectionRequest(transactionRequest);
 
-//        db call
+        // Send ActiveMQ message to Fineract
+        Map<String, Object> paymentMap = new HashMap<>();
+        paymentMap.put("transactionType", PaymentGatewayConstants.TRANSACTION_TYPE_LOAN_REPAYMENT);
+        paymentMap.put("channelId", transactionRequest.getVendorId());
+        paymentMap.put("transactionReference", String.valueOf(collectionNotifyResponse.getId()));
+        paymentMap.put("mobileNo", transactionRequest.getPhoneNumber());
+        paymentMap.put("destAccount", transactionRequest.getClientId());
+        paymentMap.put("amount", transactionRequest.getAmount());
+        // TODO: set locale
+        paymentMap.put("locale", "en");
+
+        final String jsonPayment = new Gson().toJson(paymentMap);
+        // send payment to queue
+        outboundChannelHelper.sendMessage(PaymentGatewayConstants.CHANNEL_INBOUND_USAGE, jsonPayment);
+
+        //  db call
         TransactionData transactionData = new TransactionData();
 
         transactionData.setTransactionAmount(transactionRequest.getAmount());
@@ -115,7 +139,7 @@ public class TransactionsDataService {
         transactionData.setVendorReferenceId(String.valueOf(collectionNotifyResponse.getId()));
         transactionData.setAccountType("SAVINGS");
 
-        transactionsDataRepository.create(transactionData);
+        transactionsDataRepository.save(transactionData);
 
         TransactionResponse transactionResponse = Utility.convertModel(transactionRequest, TransactionResponse.class);
         transactionResponse.setPaymentStatus(TransactionStatus.PAYMENT_INITIATED);

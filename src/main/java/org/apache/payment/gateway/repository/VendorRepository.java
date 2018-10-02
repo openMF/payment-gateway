@@ -1,10 +1,10 @@
 package org.apache.payment.gateway.repository;
 
-import org.apache.payment.gateway.config.hibernate.AbstractBaseRepository;
 import org.apache.payment.gateway.domains.Vendor;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,20 +12,12 @@ import java.util.List;
  * @author Sanyam Goel created on 14/6/18
  */
 
-@Repository
-public class VendorRepository extends AbstractBaseRepository {
-//     db layer
-//    All Database interaction is done via repository
+public interface VendorRepository extends JpaRepository<Vendor, Long> {
 
-    /**
-     * List of all Active vendors
-     * @return
-     */
-    public List<Vendor> getAllActiveVendors() {
-        Criteria criteria = this.getCurrentSession().createCriteria(Vendor.class);
-        criteria.add(Restrictions.eq("isActive", true));
-        return criteria.list();
+    @Query("select vendor from Vendor vendor where vendor.isActive=1")
+    List<Vendor> getAllActiveVendors();
 
-    }
+    @Query("select vendor from Vendor vendor where vendor.vendorId=:vendorId")
+    Vendor getVendorById(@Param("vendorId") Long vendorId);
 
 }

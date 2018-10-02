@@ -18,7 +18,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "vendor")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Vendor extends BaseEntity {
 
     @Id

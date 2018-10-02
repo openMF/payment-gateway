@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.config.activeMq.models;
+package org.apache.payment.gateway.activeMQ.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

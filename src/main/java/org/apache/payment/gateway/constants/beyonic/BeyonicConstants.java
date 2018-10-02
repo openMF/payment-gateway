@@ -20,6 +20,6 @@ public class BeyonicConstants {
 
     public static final String WEBHOOKS_ENDPOINT = "https://app.beyonic.com/api/webhook";
 
-    public static final String API_TOKEN = "bb38b84f38ff77abfd373c8a59761591216e2e46";
+    public static final String API_TOKEN = "bb38b84f38ff77abfd373c8a59761591216e2e46";  // Don't use - this will be set in the vendor record
 
 }

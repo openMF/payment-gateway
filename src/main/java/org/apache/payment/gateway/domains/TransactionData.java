@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,8 +23,8 @@ import java.io.Serializable;
         @Index(columnList = "vendor_id", name = "vendor_id"),
         @Index(columnList = "vendor_reference_id", name = "vendor_reference_id")
 })
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TransactionData extends BaseEntity {
+
+public class TransactionData {
 
     @Id
     @Column(name = "transaction_id")
@@ -86,6 +87,22 @@ public class TransactionData extends BaseEntity {
 
     @Column(name = "fineract_client_id")
     private long fineractClientId;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
 
 
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = )

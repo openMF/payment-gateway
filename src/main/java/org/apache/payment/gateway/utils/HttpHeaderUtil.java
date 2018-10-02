@@ -11,8 +11,14 @@ public class HttpHeaderUtil {
 
     private static HttpHeaders headers = new HttpHeaders();
 
-    public static HttpEntity getHttpEntityInstance() {
-        headers.set("Authorization", "Token " + BeyonicConstants.API_TOKEN);
+    public static HttpEntity getHttpEntityInstance(String apiToken) {
+        headers.set("Authorization", "Token " + apiToken);
         return new HttpEntity(headers);
+    }
+
+    public static HttpEntity getHttpEntityInstance(Object body, String apiToken) {
+        headers.set("Authorization", "Token " + apiToken);
+        HttpEntity http = new HttpEntity(body, headers);
+        return http;
     }
 }
