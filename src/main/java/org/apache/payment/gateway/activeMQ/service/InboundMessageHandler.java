@@ -18,7 +18,6 @@
  */
 package org.apache.payment.gateway.activeMQ.service;
 
-import com.oracle.javafx.jmx.json.JSONException;
 import org.apache.payment.gateway.domains.Vendor;
 import org.apache.payment.gateway.dto.beyonic.request.PaymentRequest;
 import org.json.simple.parser.ParseException;
