@@ -16,6 +16,7 @@ import java.util.List;
  * @author Sanyam Goel created on 15/6/18
  */
 
+@CrossOrigin(origins = "http://localhost:3100")
 @RequestMapping(value = "/payment-gateway/api/v1/")
 @RestController
 public class TransactionsController extends RestResponseHandler {

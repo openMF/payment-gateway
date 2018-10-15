@@ -1,17 +1,17 @@
 package org.apache.payment.gateway.dto.beyonic.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.apache.payment.gateway.dto.beyonic.MetaData;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PaymentRequest {
+public class WebHook {
 
-    private String phonenumber;
+    private String phoneNumber;
 
     private String payment_type;
 
@@ -23,6 +23,12 @@ public class PaymentRequest {
 
     private String description;
 
+    private String callback_url;
 
+    private MetaData metadata;
+
+    private String firstName;
+
+    private String lastName;
 
 }

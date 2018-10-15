@@ -27,12 +27,13 @@ public class VendorService {
      */
     @Loggable
     public List<VendorDTO> getAllVendors() {
-        List<Vendor> vendors = vendorRepository.getList(Vendor.class);
+        List<Vendor> vendors = vendorRepository.findAll();
         List<VendorDTO> vendorsDTO = Utility.convertModelList(vendors, VendorDTO.class);
 
-        if(vendorsDTO == null || vendorsDTO.isEmpty()) {
-            throw new PgResourceNotFoundException("Vendor List not found");
-        }
+        // It is a valid case that there will be no vendors configured - return an empty list
+        //if(vendorsDTO == null || vendorsDTO.isEmpty()) {
+        //    throw new PgResourceNotFoundException("Vendor List not found");
+        //}
 
         return vendorsDTO;
     }
@@ -44,7 +45,7 @@ public class VendorService {
      */
     @Loggable
     public VendorDTO getVendorById(long id) {
-        Vendor vendor = vendorRepository.getById(id, Vendor.class);
+        Vendor vendor = vendorRepository.findOne(id);
         VendorDTO vendorDTO = Utility.convertModel(vendor, VendorDTO.class);;
 
         if(vendorDTO == null){
@@ -70,4 +71,17 @@ public class VendorService {
         return vendorsDTO;
     }
 
+    /**
+     * Create a new vendor
+     *
+     * @return
+     */
+    @Loggable
+    public VendorDTO createVendor(VendorDTO newVendorDTO) {
+        Vendor newVendor = Utility.convertModel(newVendorDTO, Vendor.class);
+        Vendor vendor = (Vendor) vendorRepository.save(newVendor);
+
+        VendorDTO vendorDTO = Utility.convertModel(vendor, VendorDTO.class);
+        return vendorDTO;
+    }
 }

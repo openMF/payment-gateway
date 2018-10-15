@@ -4,7 +4,6 @@ import org.apache.payment.gateway.constants.beyonic.BeyonicConstants;
 import org.apache.payment.gateway.dto.beyonic.response.WebHookCollectionReceivedResponse;
 import org.apache.payment.gateway.dto.beyonic.response.WebHookCollectionRequestStatusResponse;
 import org.apache.payment.gateway.dto.beyonic.response.WebHookPaymentStatusResponse;
-import org.apache.payment.gateway.repository.beyonic.WebHookRepository;
 import org.apache.payment.gateway.utils.HttpHeaderUtil;
 import org.apache.payment.gateway.utils.RestTemplateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WebHookService {
-
-    @Autowired
-    WebHookRepository webHookRepository;
 
     public String getPaymentStatusChangedEvent(WebHookPaymentStatusResponse webHookPaymentStatusResponse) {
         System.out.println(webHookPaymentStatusResponse.toString());

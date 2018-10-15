@@ -1,7 +1,6 @@
 package org.apache.payment.gateway.service.beyonic;
 
 import org.apache.payment.gateway.dto.beyonic.request.CollectionNotifyRequest;
-import org.apache.payment.gateway.repository.beyonic.CollectionRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CollectionRequestService {
 
-    @Autowired
-    CollectionRequestRepository collectionRequestRepository;
 
     public CollectionNotifyRequest createCollectionRequest() {
 //        create collectionRequestObject from transaction received.

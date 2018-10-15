@@ -1,4 +1,4 @@
-package org.apache.payment.gateway.config.activeMq.models;
+package org.apache.payment.gateway.activeMQ.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;

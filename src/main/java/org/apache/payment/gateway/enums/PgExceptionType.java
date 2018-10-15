@@ -17,7 +17,6 @@ public enum PgExceptionType {
     HttpMediaTypeNotSupportedException,
 
     PgActiveMqException,
-    PgHibernateException,
     PgResourceNotFoundException;
 
     private PgExceptionType(){

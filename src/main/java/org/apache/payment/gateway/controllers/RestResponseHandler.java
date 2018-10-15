@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.payment.gateway.dto.response.ErrorResponseModel;
 import org.apache.payment.gateway.dto.response.ResponseModel;
 import org.apache.payment.gateway.enums.PgExceptionType;
-import org.apache.payment.gateway.utils.exceptions.PgHibernateException;
 import org.apache.payment.gateway.utils.exceptions.PgResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -164,14 +163,6 @@ public class RestResponseHandler {
         return new ResponseModel((Object) null, HttpStatus.NOT_FOUND.value(), error);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler({PgHibernateException.class})
-    @ResponseBody
-    public ResponseModel<Object> hibernateExceptionHandler(PgHibernateException ex) {
-        logger.error("Exception : ", ex);
-        ErrorResponseModel error = new ErrorResponseModel(PgExceptionType.PgResourceNotFoundException, (String) ex.getErrorCode(), ex.getMessage(), Instant.now().toEpochMilli(), this.getErrors(ex.getMessage()));
-        return new ResponseModel((Object) null, HttpStatus.INTERNAL_SERVER_ERROR.value(), error);
-    }
 
 
     /*

@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.payment.gateway.config.activeMq.models.PublishBody;
-import org.apache.payment.gateway.config.activeMq.models.QueueMessageModel;
+import org.apache.payment.gateway.activeMQ.models.PublishBody;
+import org.apache.payment.gateway.activeMQ.models.QueueMessageModel;
 
 import java.io.IOException;
 import java.util.Collection;
